@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,8 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import bean.User;
-import dao.userLogin;
+import service.UserService;
 
 
 @WebServlet("/LoginServlet")
@@ -31,20 +31,29 @@ public class LoginServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.print("post");
+		HttpSession session=request.getSession();
 		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
 		String userNickname=request.getParameter("uname");
 		String userPassword=request.getParameter("upwd");
-		User loginUser=new User(userNickname,userPassword);
-		int result=userLogin.login(loginUser);
-		if(result>0) {
-			System.out.print("成功");
-			HttpSession session=request.getSession();
-			session.setAttribute("userNickname","董涛");
+//		User loginUser=new User(userNickname,userPassword);
+		UserService userService=new UserService();
+		int result=userService.UserLoginCheck(userNickname, userPassword);
+		if(result==1) {
+			System.out.print("登陆成功");
+			PrintWriter out=response.getWriter();
+			out.println("<h2>出来了吗</h2>");
+			session.setAttribute("userNickname","yxzt");
+			
+		}else if(result==0){
+			session.setAttribute("msg","账号已被封禁");
+			System.out.print("账号已被封禁");
 		}else {
-			System.out.print("失败");
+			session.setAttribute("msg","用户名或密码错误");
+			System.out.print("用户名或密码错误");
 		}
 		response.sendRedirect("index.jsp");
+		//request.getRequestDispatcher("/index.jsp").forward(request,response);
 	}
 
 }
