@@ -1,7 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -41,16 +40,14 @@ public class LoginServlet extends HttpServlet {
 		int result=userService.UserLoginCheck(userNickname, userPassword);
 		if(result==1) {
 			System.out.print("登陆成功");
-			PrintWriter out=response.getWriter();
-			out.println("<h2>出来了吗</h2>");
-			session.setAttribute("userNickname","yxzt");
-			
+			session.setAttribute("userNickname",userNickname);
 		}else if(result==0){
 			session.setAttribute("msg","账号已被封禁");
 			System.out.print("账号已被封禁");
 		}else {
 			session.setAttribute("msg","用户名或密码错误");
 			System.out.print("用户名或密码错误");
+			
 		}
 		response.sendRedirect("index.jsp");
 		//request.getRequestDispatcher("/index.jsp").forward(request,response);

@@ -10,5 +10,6 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="lib" path="D:/迅雷下载/apache-tomcat-8.5.37/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="D:/迅雷下载/apache-tomcat-8.5.37/lib/jsp-api.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

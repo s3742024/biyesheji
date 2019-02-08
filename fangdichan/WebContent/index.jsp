@@ -1,11 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<<jsp:useBean id="user" class="bean.User"></jsp:useBean>
+<jsp:useBean id="user" class="bean.User"></jsp:useBean>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="./source/css/myStyle.css" />
+<style type="text/css">
+.index-news {
+	height: 300px
+}
+}
+</style>
 </head>
 <body>
 	<!-- 头部部分 -->
@@ -13,33 +20,82 @@
 	<!-- 	主要区域 -->
 	<div class="layui-container">
 		<div class="layui-row">
-			<div class="layui-col-md8" style="background-color: #dee; height: 1000px">
+			<div class="layui-col-md8 index-main-left" style="background-color: #dee">
 				<div class="quick">
 					<div class="layui-row quick-info">快速查询房屋信息</div>
 					<div class="layui-row quick-search">
 						<input type="text" name="title" required lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
-						<button class="layui-btn layui-btn-fluid">流体按钮（最大化适应）</button>
+						<button class="layui-btn layui-btn-fluid">
+							<i class="layui-icon">&#xe615</i>搜索
+						</button>
 					</div>
 					<div class="quick-area"></div>
 					<div class="quick-price"></div>
 				</div>
+				<div class="index-show-item">
+					<p>热门楼盘>></p>
+					<div class="layui-row">
+						<div class="layui-carousel" id="carousel1">
+							<div carousel-item>
+								<div>条目1</div>
+								<div>条目2</div>
+								<div>条目3</div>
+								<div>条目4</div>
+								<div>条目5</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="layui-row ad-1">
+					<img alt="ad1" src="${pageContext.request.contextPath}/source/images/ad1.jpg">
+				</div>
+				<div class="index-show-item">
+					<p>热门导购>></p>
+					<div class="layui-row">
+						<div class="layui-carousel" id="carousel2">
+							<div carousel-item>
+								<div>条目1</div>
+								<div>条目2</div>
+								<div>条目3</div>
+								<div>条目4</div>
+								<div>条目5</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="layui-row ad-1">
+					<img alt="ad2" src="${pageContext.request.contextPath}/source/images/ad2.jpg">
+				</div>
+				<div class="index-show-item">
+					<p>精选>></p>
+					<div class="layui-row" style="background-color: #fcc; height: 150px; width: 100%">精选推荐</div>
+				</div>
 			</div>
-			<div class="layui-col-md4" style="background-color: #eca; height: 1000px">
+			<div class="layui-col-md4 index-main-left" style="background-color: #eca;">
 				<!-- 用户状态部分 -->
-
-				<%-- 				<c:set value="董涛" target="${user}" property="userNickname"></c:set> --%>
-				<%-- 				<c:out value="${user.userNickname }"></c:out> --%>
-				<%-- 				<c:out value="${user.userPassword }"></c:out> --%>
-				<c:if test="${empty sessionScope.userNickname}">
-					<h2>还没登陆</h2>
-					<c:import url="userLogin.jsp"></c:import>
-				</c:if>
-				<c:if test="${not empty sessionScope.userNickname}">
-					${sessionScope.userNickname}
-					
-					<h2>登陆了</h2>
-				</c:if>
-
+				<div class="user-status">
+					<c:if test="${empty sessionScope.userNickname}">
+						<c:import url="userLogin.jsp"></c:import>
+					</c:if>
+					<c:if test="${not empty sessionScope.userNickname}">
+						<%-- 					${sessionScope.userNickname} --%>
+						<c:import url="userStatus.jsp"></c:import>
+					</c:if>
+				</div>
+				<fieldset class="layui-elem-field">
+					<legend>新房动态</legend>
+					<div class="layui-field-box index-news">内容区域</div>
+				</fieldset>
+				<div class="layui-row ad-2">
+					<img alt="ad3" src="${pageContext.request.contextPath}/source/images/ad3.jpg">
+				</div>
+				<fieldset class="layui-elem-field">
+					<legend>无锡租房小区排行</legend>
+					<div class="layui-field-box index-news">内容区域</div>
+				</fieldset>
+				<div class="layui-row ad-2">
+					<img alt="ad4" src="${pageContext.request.contextPath}/source/images/ad4.jpg">
+				</div>
 				<%
 					// 					Connection conn;
 					// 					Statement stmt;
@@ -91,6 +147,21 @@
 	</div>
 	<!-- 	尾部部分 -->
 	<c:import url="footer.jsp"></c:import>
-
+	<script type="text/javascript">
+		layui.use('carousel', function() {
+			var carousel = layui.carousel;
+			//建造实例
+			carousel.render({
+				elem : '#carousel1',
+				width : '100%',
+				arrow : 'always'
+			});
+			carousel.render({
+				elem : '#carousel2',
+				width : '100%',
+				arrow : 'always'
+			});
+		});
+	</script>
 </body>
 </html>

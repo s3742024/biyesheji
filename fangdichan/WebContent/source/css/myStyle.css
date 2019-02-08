@@ -1,1 +1,164 @@
 @charset "UTF-8";
+
+@media screen and (max-width: 992px) {
+	.layui-container {
+		width: auto;
+	}
+}
+
+.layui-form-item {
+	margin-bottom: 12px;
+}
+
+.layui-container {
+	padding: 0;
+}
+
+.logo {
+	height: 50px;
+	width: 100%;
+}
+
+.position {
+	height: 50px;
+	line-height: 50px;
+	background-color: #eee;
+}
+
+.position-choose {
+	background-color: #ddd;
+}
+
+.welcome {
+	height: 80px;
+}
+
+.nav {
+	background-color: #62AB00;
+}
+
+.nav li {
+	width: 150px;
+}
+
+.nav a {
+	font-size: 1.2rem;
+	text-align: center;
+}
+/* 首页 */
+.index-main-left {
+	padding: 20px 30px;
+}
+
+.quick {
+	padding-bottom: 20px;
+}
+
+.quick-info {
+	font-size: 3.0rem;
+	color: orange;
+}
+
+.quick-search {
+	display: flex;
+}
+
+.quick-search>* {
+	height: 50px;
+}
+
+.quick-search button {
+	flex-basis: 80px
+}
+
+.quick-price, .quick-area {
+	height: 80px;
+	background-color: #b99
+}
+.index-show-item>p {
+	font-size: 2em;
+	font-weight: bold;
+	color: orange;
+	margin-bottom: 10px;
+}
+
+.ad-1 {
+	height: 150px;
+	margin: 20px 0;
+}
+.ad-2 {
+	height: 150px;
+	margin: 20px 0;
+}
+.ad-1>img,.ad-2>img{
+	width:100%;	
+	height:100%;
+}
+
+/* userStatus */
+
+.user-status {
+	/* 	height: 400px; */
+	padding: 20px;
+	background-color: #eee;
+	opacity: 0.5;
+	margin-bottom:30px;
+}
+
+.login-title {
+	text-align: center;
+	font-size: 2rem;
+	font-weight: bolder;
+}
+
+.login-label {
+	width: 40px;
+	padding-right: 0px;
+	padding-left: 0px;
+	font-weight: bold;
+	text-align: left;
+	font-size: 1.1rem;
+}
+
+.login-input {
+	margin-left: 50px;
+}
+
+.login-wjmm {
+	float: right;
+	margin-top: 8px;
+}
+
+.user-notice-image {
+	float: left;
+	box-sizing: border-box;
+	width: 50%;
+	text-align: center;
+}
+
+.user-notice-image img {
+	width: auto;
+	height: 80px;
+	border-radius: 40px;
+}
+
+.user-notice-name {
+	float: left;
+	box-sizing: border-box;
+	padding-left: 10px;
+	width: 50%;
+	height: 80px;
+	line-height: 40px;
+	background-color: #eee;
+}
+
+.user-notice {
+	margin-left: 20px;
+	margin-top: 20px;
+}
+
+.user-notice i {
+	display: inline-block;
+	width: 49%;
+	margin-top: 10px;
+}
