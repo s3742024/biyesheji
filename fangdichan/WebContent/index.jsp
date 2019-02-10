@@ -1,18 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<jsp:useBean id="user" class="bean.User"></jsp:useBean>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="./source/css/myStyle.css" />
-<style type="text/css">
-.index-news {
-	height: 300px
-}
-}
-</style>
+<title>房地产交易网</title>
+
 </head>
 <body>
 	<!-- 头部部分 -->
@@ -20,7 +13,7 @@
 	<!-- 	主要区域 -->
 	<div class="layui-container">
 		<div class="layui-row">
-			<div class="layui-col-md8 index-main-left" style="background-color: #dee">
+			<div class="layui-col-md8 index-main" style="background-color: #dee">
 				<div class="quick">
 					<div class="layui-row quick-info">快速查询房屋信息</div>
 					<div class="layui-row quick-search">
@@ -71,7 +64,7 @@
 					<div class="layui-row" style="background-color: #fcc; height: 150px; width: 100%">精选推荐</div>
 				</div>
 			</div>
-			<div class="layui-col-md4 index-main-left" style="background-color: #eca;">
+			<div class="layui-col-md4 index-main" style="background-color: #eca;">
 				<!-- 用户状态部分 -->
 				<div class="user-status">
 					<c:if test="${empty sessionScope.userNickname}">

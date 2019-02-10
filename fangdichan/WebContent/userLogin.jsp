@@ -8,7 +8,6 @@
 </head>
 <body>
 	<c:if test="${not empty sessionScope.msg}">
-		<h2>${sessionScope.msg}</h2>
 		<script type="text/javascript">
 			let msg = "${sessionScope.msg}";
 			layui.use('layer', function() {

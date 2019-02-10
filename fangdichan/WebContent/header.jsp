@@ -4,10 +4,17 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 <link rel="stylesheet" href="${pageContext.request.contextPath}/source/layui/css/layui.css">
+<link rel="stylesheet" type="text/css" href="./source/css/myStyle.css" />
 <script src="${pageContext.request.contextPath}/source/layui/layui.js"></script>
-
-
+<%-- <script type="text/javascript" src="${pageContext.request.contextPath}/source/js/tools.js"></script> --%>
+<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+<style type="text/css">
+.index-news {
+	height: 300px
+}
+</style>
 </head>
 <body>
 	<div class="layui-container">
@@ -28,12 +35,12 @@
 			<div class="welcome" style="background-image: url('${pageContext.request.contextPath}/source/images/welcome.png"');"></div>
 		</div>
 		<div class="layui-row">
-			<ul class="layui-nav nav">
-				<li class="layui-nav-item layui-this"><a href="">首页</a></li>
+			<ul class="layui-nav nav" style="">
+				<li class="layui-nav-item layui-this"><a href="index.jsp">首页</a></li>
 				<li class="layui-nav-item "><a href="">最新内容</a></li>
 				<li class="layui-nav-item"><a href="">房价</a></li>
 				<li class="layui-nav-item"><a href="">买房</a></li>
-				<li class="layui-nav-item"><a href="">卖房</a></li>
+				<li class="layui-nav-item"><a href="sell.jsp">卖房</a></li>
 				<li class="layui-nav-item"><a href="">问答</a></li>
 			</ul>
 

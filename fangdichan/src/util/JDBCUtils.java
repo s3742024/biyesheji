@@ -49,7 +49,7 @@ public class JDBCUtils {
 			pstmt = getConnection().prepareStatement(sql);
 			if (params != null) {
 				for (int i = 0; i < params.length; i++) {
-					pstmt.setObject(i + i, params[i]);
+					pstmt.setObject(i + 1, params[i]);
 				}
 			}
 			int count = pstmt.executeUpdate();
@@ -58,6 +58,7 @@ public class JDBCUtils {
 			else
 				return false;
 		} catch (Exception e) {
+			close(null);
 			e.printStackTrace();
 			return false;
 		}

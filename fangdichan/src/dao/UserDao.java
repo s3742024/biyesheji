@@ -11,6 +11,7 @@ public class UserDao {
 	private static Connection conn = null;
 	private static PreparedStatement pstmt = null;
 	private static ResultSet rs = null;
+	private static boolean res = false;
 	private static int result = 0;
 
 	/**
@@ -55,7 +56,7 @@ public class UserDao {
 	 * @param string
 	 * @return
 	 */
-	public static User UpdateUserByID(String id, User user) {
+	public static User UpdateUserNick(String id, User user) {
 //		try {
 //			String sql = "select * from a_user where user_password = ? and user_nickname = ?";
 //			// 连接数据库
@@ -88,5 +89,55 @@ public class UserDao {
 //			JDBCUtils.close(rs, pstmt, conn);
 //		}
 
+	}
+
+	public static boolean UpdatePwdByNickname(String nickname, String password) {
+		try {
+			String sql = "update a_user set user_password = ? where user_nickname = ?";
+			Object[] params = { password, nickname };
+			res = JDBCUtils.executeUpdate(sql, params);
+			return res;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			JDBCUtils.close(rs);
+		}
+	}
+	public static boolean UpdateNickname(String nickname, String alterNickname) {
+		try {
+			String sql = "update a_user set user_nickname = ? where user_nickname = ?";
+			Object[] params = { alterNickname, nickname };
+			res = JDBCUtils.executeUpdate(sql, params);
+			return res;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			JDBCUtils.close(rs);
+		}
+	}
+	/**
+	 * 
+	 * @description 是否存在该昵称
+	 * @param 要查的昵称
+	 * @return true=没找到 false=找到或出错
+	 */
+	public static boolean ExistNickname(String nickname) {
+		try {
+			String sql = "select * from a_user where user_nickname = ?";
+			Object[] params = { nickname };
+			rs = JDBCUtils.executeQuery(sql, params);
+			if (rs.next()) {//找到
+				return false;
+			} else {// 没有找到
+				return true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			JDBCUtils.close(rs);
+		}
 	}
 }
