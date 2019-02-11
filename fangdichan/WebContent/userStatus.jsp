@@ -21,7 +21,7 @@
 		<a href="userInfoEdit.jsp"><i class="layui-icon layui-icon-username">账号资料修改</i></a>
 		<i class="layui-icon layui-icon-auz">完善个人信息</i>
 		<i class="layui-icon layui-icon-notice">最新通知</i>
-		<i class="layui-icon layui-icon-return">退出登陆</i>
+		<a href="LogoutServlet"><i class="layui-icon layui-icon-return">退出登陆</i></a>
 	</div>
 </body>
 </html>

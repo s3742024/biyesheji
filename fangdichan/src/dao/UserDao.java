@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import bean.RealInfo;
 import bean.User;
 import util.JDBCUtils;
 
@@ -104,6 +105,7 @@ public class UserDao {
 			JDBCUtils.close(rs);
 		}
 	}
+
 	public static boolean UpdateNickname(String nickname, String alterNickname) {
 		try {
 			String sql = "update a_user set user_nickname = ? where user_nickname = ?";
@@ -117,6 +119,7 @@ public class UserDao {
 			JDBCUtils.close(rs);
 		}
 	}
+
 	/**
 	 * 
 	 * @description 是否存在该昵称
@@ -128,7 +131,7 @@ public class UserDao {
 			String sql = "select * from a_user where user_nickname = ?";
 			Object[] params = { nickname };
 			rs = JDBCUtils.executeQuery(sql, params);
-			if (rs.next()) {//找到
+			if (rs.next()) {// 找到
 				return false;
 			} else {// 没有找到
 				return true;
@@ -140,4 +143,56 @@ public class UserDao {
 			JDBCUtils.close(rs);
 		}
 	}
+
+	/**
+	 * 
+	 * @description 是否存在该昵称
+	 * @param 要查的昵称
+	 * @return true=没找到 false=找到或出错
+	 */
+	public static boolean ExistRealInfo(String userNickname) {
+		try {
+			String sql = "select real_info_id from a_user where user_nickname = ?";
+			Object[] params = { userNickname };
+			rs = JDBCUtils.executeQuery(sql, params);
+			if (rs.next()) {// 找到
+				if(rs.getString("real_info_id")==null) {
+					return true;
+				}
+				return false;
+			} else {// 没有找到
+				return false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			JDBCUtils.close(rs);
+		}
+	}
+
+	/**
+	 * 
+	 * @description 更新数据库a_real_info表，在a_user表中添加其主键
+	 * @param 要更新的bean类
+	 * @param 昵称
+	 * @return true=成功，false=出错
+	 */
+	public static boolean UpdateRealInfo(String nickname, RealInfo realInfo) {
+		try {
+			String sql = "INSERT INTO a_real_info(real_info_id,real_info_name,id_card_num,occupation)VALUES(?,?,?,?);update a_user  set real_info_id=? where user_nickname = ?";
+			Object[] params = { realInfo.getRealInfoId(), realInfo.getRealInfoName(), realInfo.getIdCardNum(), realInfo.getOccupation(), realInfo.getRealInfoId(), nickname };
+			res = JDBCUtils.executeUpdate(sql, params);
+			if (res)
+				return true;
+			else
+				return false;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			JDBCUtils.close(null);
+		}
+	}
+	
 }

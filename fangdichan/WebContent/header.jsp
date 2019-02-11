@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/source/layui/css/layui.css">
 <link rel="stylesheet" type="text/css" href="./source/css/myStyle.css" />
 <script src="${pageContext.request.contextPath}/source/layui/layui.js"></script>
-<%-- <script type="text/javascript" src="${pageContext.request.contextPath}/source/js/tools.js"></script> --%>
+<%-- <script type="text/javascript" src="${pageContext.request.contextPath}/source/js/jquery.js"></script> --%>
 <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
 <style type="text/css">
 .index-news {
