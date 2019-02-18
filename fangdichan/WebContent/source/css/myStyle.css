@@ -181,7 +181,9 @@
 	background-color: #fff;
 }
 .sell-tab li{
-	
-	
 	font-weight:blod;
+}
+.layui-upload-img{
+	height: 150px;
+	width: auto;
 }

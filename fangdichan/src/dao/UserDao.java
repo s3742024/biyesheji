@@ -17,6 +17,32 @@ public class UserDao {
 
 	/**
 	 * 
+	 * @description 根据昵称获得用户id
+	 * @param 用户昵称
+	 * @return 用户id
+	 * @return 没有查询到和出现异常为null
+	 */
+	public static String QueryUserBydNickName(String nickname) {
+		try {
+			String sql = "select user_id from a_user where user_nickname = ?";
+			Object[] params = { nickname };
+			rs = JDBCUtils.executeQuery(sql, params);
+
+			if (rs.next()) {// 找到
+				String userId = rs.getString("user_id");
+				return userId;
+			} else {// 没有找到
+				return null;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			JDBCUtils.close(rs);
+		}
+	}
+	/**
+	 * 
 	 * @description 根据昵称获和密码获得用户信息
 	 * @param 用户昵称
 	 * @param 用户密码
@@ -146,7 +172,7 @@ public class UserDao {
 
 	/**
 	 * 
-	 * @description 是否存在该昵称
+	 * @description 是否已经填写真实信息
 	 * @param 要查的昵称
 	 * @return true=没找到 false=找到或出错
 	 */
@@ -173,14 +199,14 @@ public class UserDao {
 
 	/**
 	 * 
-	 * @description 更新数据库a_real_info表，在a_user表中添加其主键
+	 * @description 添加base_info 
 	 * @param 要更新的bean类
 	 * @param 昵称
 	 * @return true=成功，false=出错
 	 */
 	public static boolean UpdateRealInfo(String nickname, RealInfo realInfo) {
 		try {
-			String sql = "INSERT INTO a_real_info(real_info_id,real_info_name,id_card_num,occupation)VALUES(?,?,?,?);update a_user  set real_info_id=? where user_nickname = ?";
+			String sql = "INSERT INTO a_real_info(real_info_id,real_info_name,id_card_num,occupation)VALUES(?,?,?,?);update s_sell_info  set real_info_id=? where user_nickname = ?";
 			Object[] params = { realInfo.getRealInfoId(), realInfo.getRealInfoName(), realInfo.getIdCardNum(), realInfo.getOccupation(), realInfo.getRealInfoId(), nickname };
 			res = JDBCUtils.executeUpdate(sql, params);
 			if (res)
