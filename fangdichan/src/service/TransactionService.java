@@ -15,14 +15,15 @@ public class TransactionService {
 	 * @param password 用户密码
 	 * @return 1=匹配成功，0=账号封禁，-1=没有找到或出错
 	 */
-	public Boolean InputHouseBaseInfo(String nickname,HouseBase houseBase) {
-		String userid=UserDao.QueryUserBydNickName(nickname);
-		if(TransactionDao.InputHouseBaseInfo(userid,houseBase))
+	public Boolean InputHouseBaseInfo(String nickname, HouseBase houseBase) {
+		String userid = UserDao.QueryUserBydNickName(nickname);
+		if (TransactionDao.InputHouseBaseInfo(userid, houseBase))
 			return true;
 		else {
 			return false;
 		}
 	}
+
 	/**
 	 * 
 	 * @description 根据用户昵称获取房屋基本信息
@@ -30,29 +31,55 @@ public class TransactionService {
 	 * @return sellInfo数组 ，为空或异常返回null
 	 */
 	public SellInfo[] GetHouseBases(String nickName) {
-		String userid=UserDao.QueryUserBydNickName(nickName);
-		ArrayList<SellInfo> sellInfoList=TransactionDao.QueryUserBydNickName(userid);
-		if(sellInfoList!=null) {
-			SellInfo[] sellInfos=new SellInfo[sellInfoList.size()];  
-			for(int i=0;i<sellInfoList.size();i++){  
-				sellInfos[i]=(SellInfo)sellInfoList.get(i);  
-			}  
+		String userid = UserDao.QueryUserBydNickName(nickName);
+		ArrayList<SellInfo> sellInfoList = TransactionDao.QueryInfosByUserId(userid);
+		if (sellInfoList != null) {
+			SellInfo[] sellInfos = new SellInfo[sellInfoList.size()];
+			for (int i = 0; i < sellInfoList.size(); i++) {
+				sellInfos[i] = (SellInfo) sellInfoList.get(i);
+			}
 			return sellInfos;
 		}
 		return null;
 	}
+
+	/**
+	 * 
+	 * @description 根据交易id获取交易信息和房屋基本信息
+	 * @param sellInfoId 交易id
+	 * @return sellInfo 对应的sell_info的bean里面包含houseBase的bean，null没有查询到和出现异常
+	 */
+	public SellInfo GetHouseBase(String sellInfoId) {
+		SellInfo sellInfo=TransactionDao.QuerySellInfoById(sellInfoId);
+		return sellInfo;
+	}
+
 	/**
 	 * 
 	 * @description 插入卖房信息和交易信息
 	 * @param sellInfo 卖出信息 里面有houseBase 基本信息
-	 * param sellInfo 用户昵称
+	 * @param sellInfo 用户昵称
 	 * @return true=成功 false=失败
 	 */
-	public Boolean updateHouseInfo(SellInfo sellInfo,String nickname) {
-		String userid=UserDao.QueryUserBydNickName(nickname);
+	public Boolean updateHouseInfo(SellInfo sellInfo, String nickname) {
+		String userid = UserDao.QueryUserBydNickName(nickname);
 		sellInfo.setSellUserId(userid);
-		Boolean isSuccess=TransactionDao.updateHouseInfo(sellInfo);
-		if(isSuccess)
+		Boolean isSuccess = TransactionDao.updateHouseInfo(sellInfo);
+		if (isSuccess)
+			return true;
+		else {
+			return false;
+		}
+	}
+	/**
+	 * 
+	 * @description 更改卖房信息
+	 * @param sellInfo 的bean
+	 * @return true=成功 false=失败
+	 */
+	public Boolean editHouseInfo(SellInfo sellInfo) {
+		Boolean isSuccess = TransactionDao.editHouseInfo(sellInfo);
+		if (isSuccess)
 			return true;
 		else {
 			return false;

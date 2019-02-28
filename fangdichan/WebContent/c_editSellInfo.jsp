@@ -6,6 +6,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+ 
 <table class="layui-table">
 		<colgroup>
 			<col>
@@ -20,11 +21,11 @@
 			</tr>
 		</thead>
 		<tbody id="baseInfoTab">
-			
 		</tbody>
 	</table>
 <script type="text/javascript">
 $(document).ready(function checkRealInfo() {
+	$(this).html(`<i class="layui-icon layui-icon-refresh" id="load"></i>`)
 	var args = {
 			"method" : "getHouseBases",
 			"nickname": "<%=session.getAttribute("userNickname")%>",
@@ -39,16 +40,21 @@ $(document).ready(function checkRealInfo() {
 				console.log(message.sellInfos);
 				$.each(message.sellInfos,function (i,element) {
 					$("#baseInfoTab").append("<tr><td>"+this.sellDate+"</td><td>"
-							+this.houseBase.detailPosition+"</td><td><button data-id=\""
-							+this.houseBaseId+"\" class=\"layui-btn\">修改资料</button></td><td><button data-id=\""
-							+this.houseBaseId+"\" class=\"layui-btn\">提交图片</button></td></tr>")
+							+this.houseBase.detailPosition+"</td><td><button dataId=\""
+							+this.sellInfoId+"\" class=\"layui-btn editInfo\">修改资料</button></td><td><button dataId=\""
+							+this.sellInfoId+"\" class=\"layui-btn\">提交图片</button></td></tr>")
 				})
 			}
+			$(".editInfo").click(function(e) { // 在页面任意位置点击而触发此事件
+				var id=$(this).attr("dataId");
+				$("#userEidtMain").load("SellServlet",{"method":"editHouseInfoPage","sellInfoId":id});
+			})
 		}).fail(function(err) {
 			console.log(err);
 			alert("未知错误");
 		})
 	})
+	
 </script>
 </body>
 </html>

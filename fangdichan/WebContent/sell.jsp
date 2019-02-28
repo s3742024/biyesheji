@@ -7,9 +7,7 @@
 <title>房地产交易网</title>
 </head>
 <style>
-#houseInfoSubmit {
-	padding: 20px 40px;
-}
+
 </style>
 <body>
 	<!-- 头部部分 -->
