@@ -28,7 +28,7 @@
 	<c:import url="header.jsp"></c:import>
 	<!-- 	主要区域 -->
 	<div class="layui-container layui-row">
-		<div class="layui-col-md3" style="background-color: #dee; height: 1000px">
+		<div class="layui-col-md3" style="background-color: #dee; min-height: 1000px">
 			<ul class="layui-nav layui-nav-tree" lay-filter="test" id="userManager">
 				<li class="layui-nav-item"><a href="javascript:void(0)" id="editNickname">修改头像昵称</a></li>
 				<li class="layui-nav-item"><a href="javascript:void(0)" id="editPwd">修改登录密码</a></li>

@@ -154,6 +154,7 @@
 				arrow : 'always'
 			});
 		});
+		
 	</script>
 </body>
 </html>

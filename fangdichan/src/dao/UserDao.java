@@ -3,6 +3,7 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import bean.RealInfo;
 import bean.User;
@@ -19,6 +20,39 @@ public class UserDao {
 	 * 
 	 * @description 根据昵称获得用户id
 	 * @param 用户昵称
+	 * @return user的bean类的数组 没有查询到和出现异常为null
+	 */
+	public static ArrayList<User>  QueryAllUser() {
+		try {
+			String sql = "select * from a_user";
+			rs = JDBCUtils.executeQuery(sql,null);
+			ArrayList<User> Users = new ArrayList<User>();
+			while (rs.next()) {// 找到
+				String user_id = rs.getString("user_id");
+				String user_nickname = rs.getString("user_nickname");
+				String user_password = rs.getString("user_password");
+				String phone_num = rs.getString("phone_num");
+				String email = rs.getString("email");
+				String real_info_id = rs.getString("real_info_id");
+				String user_type = rs.getString("user_type");
+				String manager_remarks = rs.getString("manager_remarks");
+				User user = new User(user_id, user_nickname, user_password, phone_num, email, real_info_id, user_type, manager_remarks);
+				Users.add(user);
+			}
+			if (Users.size() == 0)
+				return null;
+			else
+				return Users;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			JDBCUtils.close(rs);
+		}
+	}
+	/**
+	 * 
+	 * @description 获取所有账号信息
 	 * @return 用户id
 	 * @return 没有查询到和出现异常为null
 	 */
@@ -79,42 +113,22 @@ public class UserDao {
 
 	/**
 	 * 
-	 * @description 修改用户个人信息
-	 * @param string
-	 * @return
+	 * @description 修改用户个人信息 可改的为用户权限和管理员备注
+	 * @param 用户的bean
+	 * @return true=成功 false=失败
 	 */
-	public static User UpdateUserNick(String id, User user) {
-//		try {
-//			String sql = "select * from a_user where user_password = ? and user_nickname = ?";
-//			// 连接数据库
-//			conn = JDBCUtils.getConnection();
-//			// 建立Statement对象
-//			pstmt = conn.prepareStatement(sql);
-//			// pstmt.setString(1, password);
-//			// pstmt.setString(2, nickname);
-//			// 执行数据库查询语句
-//			rs = pstmt.executeQuery();
-//			if (rs.next()) {// 登陆成功
-//				String userId = rs.getString("user_id");
-//				String userNickname = rs.getString("user_nickname");
-//				String userPassword = rs.getString("user_password");
-//				String phoneNum = rs.getString("phone_num");
-//				String email = rs.getString("email");
-//				String realInfoId = rs.getString("real_info_id");
-//				String userType = rs.getString("user_type");
-//				String managerRemarks = rs.getString("manager_remarks");
-//				User user = new User(userId, userNickname, userPassword, phoneNum, email, realInfoId, userType, managerRemarks);
-//				return user;
-//			} else {
-//				// 没有找到
-//				return null;
-//			}
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			return null;
-//		} finally {
-//			JDBCUtils.close(rs, pstmt, conn);
-//		}
+	public static boolean UpdateUserInfo(User user) {
+		try {
+			String sql = "update a_user set user_type =? ,manager_remarks=? where user_id=?";
+			Object[] params = { user.getUserType(),user.getManagerRemarks(),user.getUserId() };
+			res = JDBCUtils.executeUpdate(sql, params);
+			return res;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			JDBCUtils.close(null);
+		}
 
 	}
 

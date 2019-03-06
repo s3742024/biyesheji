@@ -48,11 +48,11 @@ public class SellServlet extends HttpServlet {
 		System.out.println("method" + method);
 		if ("getHouseBases".equals(method)) {
 			getHouseBases(request, response);
-		}else if ("houseInfo".equals(method)) {
+		} else if ("houseInfo".equals(method)) {
 			updateHouseInfo(request, response);
-		}else if ("editHouseInfoPage".equals(method)) {
+		} else if ("editHouseInfoPage".equals(method)) {
 			editHouseInfoPage(request, response);
-		}else if ("editHouseInfo".equals(method)) {
+		} else if ("editHouseInfo".equals(method)) {
 			editHouseInfo(request, response);
 		}
 
@@ -90,79 +90,63 @@ public class SellServlet extends HttpServlet {
 //	}
 	private void getHouseBases(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
-		JSONObject json=new JSONObject();
-		TransactionService transactionService=new TransactionService();
-		SellInfo[] sellInfos=transactionService.GetHouseBases(request.getParameter("nickname"));
-		if(sellInfos!=null) {
-			json.put("msg","true");
-			json.put("sellInfos",sellInfos);
-		}else {
-			json.put("msg","false");
+		JSONObject json = new JSONObject();
+		TransactionService transactionService = new TransactionService();
+		SellInfo[] sellInfos = transactionService.GetHouseBases(request.getParameter("nickname"));
+		if (sellInfos != null) {
+			json.put("msg", "true");
+			json.put("sellInfos", sellInfos);
+		} else {
+			json.put("msg", "false");
 		}
 		out.print(json);
 		out.close();
 	}
+
 	private void updateHouseInfo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
-		HouseBase houseBase=new HouseBase(request.getParameter("pId"), 
-		request.getParameter("detailPosition"), 
-		request.getParameter("maxFloorNum"), 
-		request.getParameter("constructionArea"), 
-		request.getParameter("houseLayout"), 
-		request.getParameter("houseOrientation"), 
-		request.getParameter("houseOrientation"), 
-		request.getParameter("decorationDegree"), 
-		request.getParameter("mortgageStatus"), 
-		request.getParameter("completionDate"), 
-		request.getParameter("eastLongitude"), 
-		request.getParameter("northLatitude"));
-		SellInfo sellInfo = new SellInfo(houseBase.getHouseBaseId(), 
-				request.getParameter("sellTitle"), 
-				new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()), //当前时间
-				null,//用户id留空
-				request.getParameter("sellPrice"), 
-				request.getParameter("sellPoint"), 
-				request.getParameter("sellMentality"), 
-				null);
-		sellInfo.setHouseBase(houseBase);//添加进去
-		TransactionService transactionService=new TransactionService();
-		if(transactionService.updateHouseInfo(sellInfo,request.getParameter("nickname"))) {
+		HouseBase houseBase = new HouseBase(request.getParameter("pId"), request.getParameter("detailPosition"), request.getParameter("maxFloorNum"), request.getParameter("constructionArea"),
+				request.getParameter("houseLayout"), request.getParameter("houseOrientation"), request.getParameter("houseOrientation"), request.getParameter("decorationDegree"),
+				request.getParameter("mortgageStatus"), request.getParameter("completionDate"), request.getParameter("eastLongitude"), request.getParameter("northLatitude"));
+		SellInfo sellInfo = new SellInfo(houseBase.getHouseBaseId(), request.getParameter("sellTitle"), new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()), // 当前时间
+				null, // 用户id留空
+				request.getParameter("sellPrice"), request.getParameter("sellPoint"), request.getParameter("sellMentality"), null);
+		sellInfo.setHouseBase(houseBase);// 添加进去
+		TransactionService transactionService = new TransactionService();
+		if (transactionService.updateHouseInfo(sellInfo, request.getParameter("nickname"))) {
 			out.print("添加成功");
-		}else {
+		} else {
 			out.print("添加失败");
 		}
 		out.close();
 	}
+
 	private void editHouseInfoPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session=request.getSession();
-		String id=request.getParameter("sellInfoId");
-		TransactionService transactionService=new TransactionService();
+		HttpSession session = request.getSession();
+		String id = request.getParameter("sellInfoId");
+		TransactionService transactionService = new TransactionService();
 		SellInfo sellInfo = transactionService.GetHouseBase(id);
-		
-		if(sellInfo!=null) {
+
+		if (sellInfo != null) {
 			System.out.println(sellInfo.getSellTitle());
-			session.setAttribute("sellInfo",sellInfo);
+			session.setAttribute("sellInfo", sellInfo);
 			response.sendRedirect("a_editSellInfo.jsp");
-		}else {
+		} else {
 			response.sendRedirect("index.jsp");
 		}
 	}
+
 	private void editHouseInfo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
-		SellInfo sellInfo = new SellInfo(request.getParameter("sellInfoId"),
-				null, //houseBaseId可以不用 
-				request.getParameter("sellTitle"), 
-				null, //date可以不用
-				null, //userID可以不用
-				request.getParameter("sellPrice"), 
-				request.getParameter("sellPoint"), 
-				request.getParameter("sellMentality"), 
-				null, //concactId可以不用
+		SellInfo sellInfo = new SellInfo(request.getParameter("sellInfoId"), null, // houseBaseId可以不用
+				request.getParameter("sellTitle"), null, // date可以不用
+				null, // userID可以不用
+				request.getParameter("sellPrice"), request.getParameter("sellPoint"), request.getParameter("sellMentality"), null, // concactId可以不用
 				null);
-		TransactionService transactionService=new TransactionService();
-		if(transactionService.editHouseInfo(sellInfo)) {
+		TransactionService transactionService = new TransactionService();
+		if (transactionService.editHouseInfo(sellInfo)) {
 			out.print("更改成功");
-		}else {
+		} else {
 			out.print("更改失败");
 		}
 		out.close();

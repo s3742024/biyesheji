@@ -8,7 +8,6 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/source/layui/css/layui.css">
 <link rel="stylesheet" type="text/css" href="./source/css/myStyle.css" />
 <script src="${pageContext.request.contextPath}/source/layui/layui.js"></script>
-<%-- <script type="text/javascript" src="${pageContext.request.contextPath}/source/js/jquery.js"></script> --%>
 <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
 <style type="text/css">
 .index-news {
@@ -32,7 +31,7 @@
 			</div>
 		</div>
 		<div class="layui-row">
-			<div class="welcome" style="background-image: url('${pageContext.request.contextPath}/source/images/welcome.png"');"></div>
+			<div class="welcome" style="background-image: url('${pageContext.request.contextPath}/source/images/welcome.png');"></div>
 		</div>
 		<div class="layui-row">
 			<ul class="layui-nav nav" style="">
