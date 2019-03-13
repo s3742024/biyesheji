@@ -37,13 +37,10 @@
 				<li class="layui-nav-item layui-nav-itemed"><a href="javascript:void(0);">卖房相关</a>
 					<dl class="layui-nav-child">
 						<dd>
-							<a href="javascript:void(0);" id="pending">查看待审核的卖房信息</a>
-						</dd>
-						<dd>
 							<a href="javascript:void(0);" id="editSellInfo">修改卖房信息</a>
 						</dd>
 						<dd>
-							<a href="javascript:void(0);" id="queryPending">查看审核好的卖房信息</a>
+							<a href="javascript:void(0);" id="queryPending">查看审核情况</a>
 						</dd>
 						<dd>
 							<a href="javascript:void(0);" id="queryRequest">查看买房请求信息</a>

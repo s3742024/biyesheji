@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import bean.RealInfo;
+import bean.SellAudit;
+import net.sf.json.JSONObject;
+import service.RootService;
 import service.UserService;
 
 @WebServlet("/userManager")
@@ -51,6 +55,8 @@ public class userManager extends HttpServlet {
 			updateRealInfo(request, response);
 		}else if("CheckRealInfo".equals(method)){
 			CheckRealInfo(request, response);
+		}else if("queryAudited".equals(method)){
+			queryAudited(request, response);
 		}
 	}
 
@@ -107,6 +113,25 @@ public class userManager extends HttpServlet {
 		}else {
 			out.print("更新失败");
 		}
+		out.close();
+	}
+	
+	private void queryAudited(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		PrintWriter out = response.getWriter();
+		JSONObject json=new JSONObject();
+		RootService rootService =new RootService();
+		String nickname=request.getParameter("nickname");
+		ArrayList<SellAudit> sellAudits=rootService.queryAuditedByNickname(nickname);
+		if(sellAudits!=null) {
+			json.put("code",0);
+			json.put("message","搜索成功");
+			json.put("data", sellAudits);
+		}else {
+			json.put("code",1);
+			json.put("message","没有结果");
+			json.put("data", null);
+		}
+		out.print(json);
 		out.close();
 	}
 }

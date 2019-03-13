@@ -4,9 +4,16 @@ import util.UUIDUtils;
 
 public class RealInfo {
 	private String realInfoId;
-	private String realInfoName;
 	private String idCardNum;
 	private String occupation;
+	private String realInfoName;
+	public RealInfo(String realInfoId, String realInfoName, String idCardNum, String occupation) {
+		super();
+		this.realInfoId = realInfoId;
+		this.realInfoName = realInfoName;
+		this.idCardNum = idCardNum;
+		this.occupation = occupation;
+	}
 	public RealInfo(String realInfoName, String idCardNum, String occupation) {
 		super();
 		this.realInfoId=UUIDUtils.getUUID();

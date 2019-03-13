@@ -3,9 +3,7 @@ package bean;
 import util.UUIDUtils;
 
 public class HouseBase {
-	private String houseBaseId;
-	private String pId;
-	private String detailPosition;
+	
 	public HouseBase(String pId, String detailPosition, String maxFloorNum, String constructionArea, String houseLayout, String houseOrientation, String houseType, String decorationDegree,
 			String mortgageStatus, String completionDate, String eastLongitude, String northLatitude) {
 		super();
@@ -122,6 +120,9 @@ public class HouseBase {
 	public void setNorthLatitude(String northLatitude) {
 		this.northLatitude = northLatitude;
 	}
+	private String houseBaseId;
+	private String pId;
+	private String detailPosition;
 	private String maxFloorNum;
 	private String constructionArea;
 	private String houseLayout;

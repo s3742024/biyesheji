@@ -234,5 +234,33 @@ public class UserDao {
 			JDBCUtils.close(null);
 		}
 	}
-	
+	/**
+	 * 
+	 * @description 查询所有个人资料 
+	 * @return realInfo的bean类的数组 没有查询到和出现异常为null
+	 */
+	public static ArrayList<RealInfo>  queryPersonalData() {
+		try {
+			String sql = "select * from a_real_info";
+			rs = JDBCUtils.executeQuery(sql,null);
+			ArrayList<RealInfo> realInfos = new ArrayList<RealInfo>();
+			while (rs.next()) {// 找到
+				String real_info_id = rs.getString("real_info_id");
+				String real_info_name = rs.getString("real_info_name");
+				String id_card_num = rs.getString("id_card_num");
+				String occupation = rs.getString("occupation");
+				RealInfo realInfo = new RealInfo(real_info_id,real_info_name,id_card_num,occupation);
+				realInfos.add(realInfo);
+			}
+			if (realInfos.size() == 0)
+				return null;
+			else
+				return realInfos;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			JDBCUtils.close(rs);
+		}
+	}
 }

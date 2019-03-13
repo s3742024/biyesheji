@@ -38,6 +38,20 @@ public class SellInfo{
 	}
 
 
+	public SellInfo(String sellInfoId, String houseBaseId, String sellTitle, String sellDate, String sellUserId, String sellPrice, String sellPoint, String sellMentality, String contactInfoId) {
+		super();
+		this.sellInfoId = sellInfoId;
+		this.houseBaseId = houseBaseId;
+		this.sellTitle = sellTitle;
+		this.sellDate = sellDate;
+		this.sellUserId = sellUserId;
+		this.sellPrice = sellPrice;
+		this.sellPoint = sellPoint;
+		this.sellMentality = sellMentality;
+		this.contactInfoId = contactInfoId;
+	}
+
+
 	public String getSellInfoId() {
 		return sellInfoId;
 	}
