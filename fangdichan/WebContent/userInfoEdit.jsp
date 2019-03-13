@@ -24,8 +24,7 @@
 </style>
 </head>
 <body>
-	<!-- 头部部分 -->
-	<c:import url="header.jsp"></c:import>
+
 	<!-- 	主要区域 -->
 	<div class="layui-container layui-row">
 		<div class="layui-col-md3" style="background-color: #dee; min-height: 1000px">
@@ -74,7 +73,7 @@
 		</div>
 	</div>
 	<!-- 	尾部部分 -->
-	<c:import url="footer.jsp"></c:import>
+
 	<script>
 		$("#userManager").click(function(e) {
 			var url = e.target.id;

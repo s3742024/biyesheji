@@ -6,8 +6,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div class="layui-container">
+
 		<div class="layui-row">这里是底部</div>
-	</div>
 </body>
 </html>

@@ -17,11 +17,19 @@
 			<p>普通用户</p>
 		</div>
 	</div>
-		<div class="layui-row user-notice">
-		<a href="userInfoEdit.jsp"><i class="layui-icon layui-icon-username">账号资料修改</i></a>
+		<div class="layui-row user-notice" id="userNotice">
+		<i class="layui-icon layui-icon-username"><a href="javascript:void(0)" id="userInfoEdit">账号资料修改</a></i>
 		<i class="layui-icon layui-icon-auz">完善个人信息</i>
 		<i class="layui-icon layui-icon-notice">最新通知</i>
 		<a href="LogoutServlet"><i class="layui-icon layui-icon-return">退出登陆</i></a>
 	</div>
 </body>
+<script>
+$("#userNotice").click(function(e) {
+	var url = e.target.id;
+	if (url) {
+		$("#mainArea").load(url + ".jsp");
+	}
+})
+</script>
 </html>

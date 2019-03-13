@@ -5,18 +5,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<link rel="stylesheet" href="${pageContext.request.contextPath}/source/layui/css/layui.css">
-<link rel="stylesheet" type="text/css" href="./source/css/myStyle.css" />
-<script src="${pageContext.request.contextPath}/source/layui/layui.js"></script>
-<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
-<style type="text/css">
-.index-news {
-	height: 300px
-}
+
 </style>
 </head>
 <body>
-	<div class="layui-container">
+
 		<div class="layui-row">
 			<div class="layui-col-md2">
 				<img alt="logo" src="${pageContext.request.contextPath}/source/images/logo.png" class="logo">
@@ -34,19 +27,25 @@
 			<div class="welcome" style="background-image: url('${pageContext.request.contextPath}/source/images/welcome.png');"></div>
 		</div>
 		<div class="layui-row">
-			<ul class="layui-nav nav" style="">
+			<ul class="layui-nav nav" style="" id="navUrl">
 				<li class="layui-nav-item layui-this"><a href="index.jsp">首页</a></li>
-				<li class="layui-nav-item "><a href="">最新内容</a></li>
-				<li class="layui-nav-item"><a href="">房价</a></li>
-				<li class="layui-nav-item"><a href="">买房</a></li>
-				<li class="layui-nav-item"><a href="sell.jsp">卖房</a></li>
-				<li class="layui-nav-item"><a href="">问答</a></li>
+				<li class="layui-nav-item "><a href="javascript:void(0)">最新内容</a></li>
+				<li class="layui-nav-item"><a href="javascript:void(0)">房价</a></li>
+				<li class="layui-nav-item"><a href="javascript:void(0)" id="buy">买房</a></li>
+				<li class="layui-nav-item"><a href="javascript:void(0)" id="sell">卖房</a></li>
+				<li class="layui-nav-item"><a href="javascript:void(0)">问答</a></li>
 			</ul>
 
 		</div>
-	</div>
+
 
 	<script type="text/javascript">
+	$("#navUrl").click(function(e) {
+		var url = e.target.id;
+		if (url) {
+			$("#mainArea").load(url + ".jsp");
+		}
+	})
 		//注意：折叠面板 依赖 element 模块，否则无法进行功能性操作
 		layui.use('element', function() {
 			var element = layui.element;
