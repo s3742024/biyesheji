@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -44,6 +45,7 @@ public class SellServlet extends HttpServlet {
 //				"  }\r\n" + 
 //				"}  ");
 //		out.close();
+		Map<String, String[]> paramMap = request.getParameterMap();
 		String method = request.getParameter("method");// 得到传入的值下面根据传入的值执行不同的方法！！
 		System.out.println("method" + method);
 		if ("getHouseBases".equals(method)) {
@@ -54,6 +56,8 @@ public class SellServlet extends HttpServlet {
 			editHouseInfoPage(request, response);
 		} else if ("editHouseInfo".equals(method)) {
 			editHouseInfo(request, response);
+		}else if ("updateHouseImg".equals(method)) {
+			updateHouseImg(request, response);
 		}
 
 	}
@@ -150,5 +154,11 @@ public class SellServlet extends HttpServlet {
 			out.print("更改失败");
 		}
 		out.close();
+	}
+	private void updateHouseImg(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("啊");
+		TransactionService transactionService = new TransactionService();
+		
+		
 	}
 }

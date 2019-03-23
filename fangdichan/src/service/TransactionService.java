@@ -3,6 +3,7 @@ package service;
 import java.util.ArrayList;
 
 import bean.HouseBase;
+import bean.HouseImage;
 import bean.SellInfo;
 import dao.TransactionDao;
 import dao.UserDao;
@@ -84,5 +85,24 @@ public class TransactionService {
 		else {
 			return false;
 		}
+	}
+	/**
+	 * @description 添加houseImage信息
+	 * @param houseImage的bean类 是类数组
+	 * @return true=成功 false=失败
+	 */
+	public Boolean updateHouseImages(ArrayList<HouseImage> houseImageList) {
+		if (houseImageList == null) 
+			return false;
+		HouseImage[] houseImages = new HouseImage[houseImageList.size()];
+		for (int i = 0; i < houseImageList.size(); i++) {
+			houseImages[i] = (HouseImage) houseImageList.get(i);
+		}
+		Boolean isSuccess = TransactionDao.updateHouseImages(houseImages);
+		if (isSuccess)
+			return true;
+		else {
+			return false;
+		}	
 	}
 }

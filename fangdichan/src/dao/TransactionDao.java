@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import bean.HouseBase;
+import bean.HouseImage;
 import bean.SellInfo;
 import util.JDBCUtils;
 import util.UUIDUtils;
@@ -261,6 +262,34 @@ public class TransactionDao {
 			return null;
 		} finally {
 			JDBCUtils.close(rs);
+		}
+	}
+	
+	/**
+	 * @description 添加houseImage信息 【写得不好】
+	 * @param houseImage的bean类是数组
+	 * @return true=成功 false=失败
+	 */
+	public static boolean updateHouseImages(HouseImage[] houseImages) {
+		try {
+			if(houseImages==null)
+				return false;
+			for(int i=0;i<houseImages.length;i++) {
+				String sql = "insert into s_house_base values(?,?,?,?,?)";
+				HouseImage houseImage=houseImages[i];
+				Object[] params = { houseImage.getHouseImageId(),
+						houseImage.getImageUrl(),
+						houseImage.getImageType(),
+						houseImage.getImageRamarks(),
+						houseImage.getHouseBaseId()};
+				JDBCUtils.executeUpdate(sql, params);
+			}
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			JDBCUtils.close(null);
 		}
 	}
 }

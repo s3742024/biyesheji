@@ -185,7 +185,6 @@
 	    selobj.attr("selected","selected");
 	}
 	$('#houseInfoSubmit').on('submit', function() {
-		console.log("vc")
 		BaseInfoSubmit();
 		event.preventDefault(); //阻止默认事件
 	})
