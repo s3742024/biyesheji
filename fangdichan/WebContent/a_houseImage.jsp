@@ -30,7 +30,7 @@
 			upload.render({
 				elem : '#imgType1',
 				url : 'HouseImage',
-				multiple : false,
+				multiple : true,
 				auto : false,
 				bindAction : '#houseImgBtn',
 				headers: {"method": 'updateHouseImg'} ,
