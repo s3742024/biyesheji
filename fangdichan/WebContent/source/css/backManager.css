@@ -1,0 +1,23 @@
+@charset "UTF-8";
+@media screen and (max-width: 992px) {
+	.layui-container {
+		width: auto;
+	}
+}
+.layui-nav-tree{
+	width:100%;
+}
+.layui-form-item {
+	margin-bottom: 12px;
+}
+
+.layui-container {
+	padding: 0;
+}
+.layui-btn+.layui-btn {
+   margin-left: 0; 
+}
+
+.titleImg{
+	height:100px;
+}

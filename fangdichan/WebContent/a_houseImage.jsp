@@ -33,14 +33,14 @@
 				multiple : true,
 				auto : false,
 				bindAction : '#houseImgBtn',
-				headers: {"method": 'updateHouseImg'} ,
+				headers: {"houseBaseId": "<%=request.getParameter("houseBaseId")%>"} ,
 				choose : function(obj) {
 					//预读本地文件示例，不支持ie8
 					obj.preview(function(index, file, result) {
 						$('#imgBox1').append('<img src="'+ result +'" alt="'+ file.name +'" class="layui-upload-img">')
 					});
 				},
-				done : function(res) {
+				done : function(res) {		
 					console.log(res)
 				}
 			});

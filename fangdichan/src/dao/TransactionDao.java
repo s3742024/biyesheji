@@ -266,7 +266,7 @@ public class TransactionDao {
 	}
 	
 	/**
-	 * @description 添加houseImage信息 【写得不好】
+	 * @description 添加houseImage信息 【待修改】
 	 * @param houseImage的bean类是数组
 	 * @return true=成功 false=失败
 	 */
@@ -275,7 +275,7 @@ public class TransactionDao {
 			if(houseImages==null)
 				return false;
 			for(int i=0;i<houseImages.length;i++) {
-				String sql = "insert into s_house_base values(?,?,?,?,?)";
+				String sql = "insert into s_house_image values(?,?,?,?,?)";
 				HouseImage houseImage=houseImages[i];
 				Object[] params = { houseImage.getHouseImageId(),
 						houseImage.getImageUrl(),

@@ -98,10 +98,13 @@ public class SellServlet extends HttpServlet {
 		TransactionService transactionService = new TransactionService();
 		SellInfo[] sellInfos = transactionService.GetHouseBases(request.getParameter("nickname"));
 		if (sellInfos != null) {
-			json.put("msg", "true");
-			json.put("sellInfos", sellInfos);
+			json.put("code",0);
+			json.put("message","搜索成功");
+			json.put("data", sellInfos);
 		} else {
-			json.put("msg", "false");
+			json.put("code",1);
+			json.put("message","没有结果");
+			json.put("data", null);
 		}
 		out.print(json);
 		out.close();
