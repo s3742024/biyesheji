@@ -67,19 +67,22 @@
 				}); 
 		})
 	}
-	$.ajax({
-		type : "post",
-		url : "BuyServlet",
-		data : {"method":"default","page":page,"num":num},
-	}).success(function(message) {
-		//更新要显示的地方
-		var message=JSON.parse(message)
-		//console.log(message.data);
-		render(message.data);
-	}).fail(function(err) {
-		console.log(err);
-		alert("未知错误");
-	})
+	function getInfo(){
+		$.ajax({
+			type : "post",
+			url : "BuyServlet",
+			data : {"method":"default","page":page,"num":num},
+		}).success(function(message) {
+			//更新要显示的地方
+			var message=JSON.parse(message)
+			//console.log(message.data);
+			render(message.data);
+		}).fail(function(err) {
+			console.log(err);
+			alert("未知错误");
+		})
+	}
+	getInfo();
 	/*		var data = { //数据
  			"list":[{"title":"千家萬户实拍 溪岸景园 99平150万 毛坯3房 视野开",
 				"houseBase":{
@@ -98,19 +101,7 @@
 	*/
 		function moreQuery() {
 			page++;
-			$.ajax({
-				type : "post",
-				url : "BuyServlet",
-				data : {"method":"default","page":page,"num":num},
-			}).success(function(message) {
-				//更新要显示的地方
-				var message=JSON.parse(message)
-				//console.log(message.data);
-				render(message.data);
-			}).fail(function(err) {
-				console.log(err);
-				alert("未知错误");
-			})
+			getInfo();
 			console.log(num,page);
 		}
 		
