@@ -190,3 +190,29 @@
 #houseInfoSubmit {
 	padding: 20px 40px;
 }
+
+/* buy */
+.buy-box{
+	margin:5px 0;
+}
+.buy-box:hover{
+	background-color: #eee;
+}
+.buy-img{
+	width: 100%;
+	height:auto;
+}
+.buy-item-text{
+	padding: 20px 20px;
+}
+.buy-text-title{
+	font-size:1.3em;
+	margin-bottom:10px;
+	font-weight: bolder;
+}
+.buy-text-price{
+	margin-top: 40px;
+	font-size:1.4em;
+	color: red;
+	font-weight: bolder;
+}

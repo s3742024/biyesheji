@@ -40,8 +40,9 @@
 						$('#imgBox1').append('<img src="'+ result +'" alt="'+ file.name +'" class="layui-upload-img">')
 					});
 				},
-				done : function(res) {		
-					console.log(res)
+				done : function(res) {
+					var layer = layui.layer;
+					layer.msg("添加成功");
 				}
 			});
 		});

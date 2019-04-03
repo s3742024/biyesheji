@@ -1,7 +1,8 @@
 package dao;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.ArrayList;
+
+import bean.SellInfo;
 
 public class t {
 	public static void main(String[] args) {
@@ -18,6 +19,8 @@ public class t {
 //			  houseBase = (HouseBase)houseBases.get(i);
 //		   System.out.println(houseBase.getDetailPosition());
 //		  }
-		System.out.println(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));// new Date()为获取当前系统时间
+//		System.out.println(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));// new Date()为获取当前系统时间
+		ArrayList<SellInfo> sellInfos = BuyDao.QuerySellInfoById(1, 4);
+		System.out.println(sellInfos);
 	}
 }

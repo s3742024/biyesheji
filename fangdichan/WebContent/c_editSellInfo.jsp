@@ -71,7 +71,6 @@
 				if (obj.event === 'editInfo') {
 					$("#userEidtMain").load("SellServlet",{"method":"editHouseInfoPage","sellInfoId":data.sellInfoId});
 				}else if(obj.event === 'editImg'){
-					
 					$("#userEidtMain").load("a_houseImage.jsp",{"houseBaseId":data.houseBaseId});
 				}
 			})
