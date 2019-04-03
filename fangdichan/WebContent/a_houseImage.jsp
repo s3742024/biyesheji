@@ -41,8 +41,10 @@
 					});
 				},
 				done : function(res) {
-					var layer = layui.layer;
-					layer.msg("添加成功");
+					layui.use('layer', function() {
+						var layer = layui.layer;
+						layer.msg("添加成功");
+					});
 				}
 			});
 		});

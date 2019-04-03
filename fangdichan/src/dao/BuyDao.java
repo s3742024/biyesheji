@@ -60,7 +60,7 @@ public class BuyDao {
 	 * @param num 每页几条数据
 	 * @return sellInfo 对应的sell_info的数组，null没有查询到和出现异常
 	 */
-	public static ArrayList<SellInfo> QuerySellInfoById(int page,int num) {
+	public static ArrayList<SellInfo> QuerySellInfo(int page,int num) {
 		try {//这里只能用字符串拼接不然会出错
 			String sql = "select top "+ num +" * from (select row_number() over(order by sell_date asc) as rownumber,* from houserAllInfo_b) temp_row where rownumber>"+num*(page-1);
 			rs = JDBCUtils.executeQuery(sql, null);

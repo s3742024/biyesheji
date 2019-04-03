@@ -12,6 +12,7 @@
 	<div id="buy-search">>
 		
 	</div>
+	<button class="layui-btn layui-btn-fluid buy-more" onclick="moreQuery()">点击加载更多...</button>
 	<!-- <div class="layui-row buy-box">
 		<div class="layui-col-md2">
       	<img alt="" src="https://pic1.ajkimg.com/display/hj/ae14250ba1ab179d163aeb5f579da09c/240x180c.jpg?t=1" class="buy-img">
@@ -27,26 +28,60 @@
 	</div> -->
 
 	<script id="dt" type="text/html">
-		{{#  layui.each(d.list, function(index, item){ }}
+		{{#  layui.each(d, function(index, item){ }}
 			<div class="layui-row buy-box">
 			<div class="layui-col-md2">
 		  	<img alt="" src="https://pic1.ajkimg.com/display/hj/ae14250ba1ab179d163aeb5f579da09c/240x180c.jpg?t=1" class="buy-img">
 			</div>
 			<div class="layui-col-md7 buy-item-text">
-			 	<p class="buy-text-title">{{ item.title }}<p>
-			 	<p class="buy-text-info"><span>{{ item.houseBase.houseLayout }}</span><em>|</em><span>{{ item.houseBase.houseType }}</span><p>
+			 	<p class="buy-text-title">{{ item.sellTitle }}<p>
+			 	<p class="buy-text-info">
+					<i class="layui-icon">&#xe623;</i><span>{{ item.houseBase.houseLayout }}</span>
+					<i class="layui-icon">&#xe623;</i><span>{{ item.houseBase.decorationDegree }}</span>
+					<i class="layui-icon">&#xe623;</i><span>{{ item.houseBase.houseType }}</span><p>
 			 	<p class="buy-text-position">{{ item.houseBase.detailPosition }}</p>
 			</div>
 			<div class="layui-col-md3 buy-text-price">
-			  	180万
+			  	{{item.sellPrice}}万
 			</div>
 			</div>
 		{{#  }); }}
 		
 	</script>
 	<script type="text/javascript">
-		var data = { //数据
-			"list":[{"title":"千家萬户实拍 溪岸景园 99平150万 毛坯3房 视野开",
+	var page=1;
+	var num=4;
+	function render(data){
+		var decorationDegree=['毛坯','简装修','精装修','豪华装修'];
+		var houseType=['公寓','普通住宅','别墅','平房','其他'];
+		for(var i of data){
+			i.houseBase.decorationDegree=decorationDegree[i.houseBase.decorationDegree];
+			i.houseBase.houseType=houseType[i.houseBase.houseType];
+		}
+		var getTpl = dt.innerHTML;
+		var view = document.getElementById('buy-search');
+		layui.use('laytpl', function(){
+			  var laytpl = layui.laytpl;
+			  laytpl(getTpl).render(data, function(html){
+				  view.innerHTML += html;
+				}); 
+		})
+	}
+	$.ajax({
+		type : "post",
+		url : "BuyServlet",
+		data : {"method":"default","page":page,"num":num},
+	}).success(function(message) {
+		//更新要显示的地方
+		var message=JSON.parse(message)
+		//console.log(message.data);
+		render(message.data);
+	}).fail(function(err) {
+		console.log(err);
+		alert("未知错误");
+	})
+	/*		var data = { //数据
+ 			"list":[{"title":"千家萬户实拍 溪岸景园 99平150万 毛坯3房 视野开",
 				"houseBase":{
 					"houseLayout":"layer",
 					"houseType":"layer.layui.com",
@@ -58,17 +93,26 @@
 					"houseType":"好的",
 					"detailPosition":"太湖畔山庄园   滨湖-太湖新城-山水东路105号"
 				}
-			}]
-			
+			}] 
 		}
-		var getTpl = dt.innerHTML;
-		var view = document.getElementById('buy-search');
-		layui.use('laytpl', function(){
-			  var laytpl = layui.laytpl;
-			  laytpl(getTpl).render(data, function(html){
-				  view.innerHTML = html;
-				});
-		})
+	*/
+		function moreQuery() {
+			page++;
+			$.ajax({
+				type : "post",
+				url : "BuyServlet",
+				data : {"method":"default","page":page,"num":num},
+			}).success(function(message) {
+				//更新要显示的地方
+				var message=JSON.parse(message)
+				//console.log(message.data);
+				render(message.data);
+			}).fail(function(err) {
+				console.log(err);
+				alert("未知错误");
+			})
+			console.log(num,page);
+		}
 		
 	</script>
 </body>

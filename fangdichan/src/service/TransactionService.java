@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import bean.HouseBase;
 import bean.HouseImage;
 import bean.SellInfo;
+import dao.BuyDao;
 import dao.TransactionDao;
 import dao.UserDao;
 
@@ -66,11 +67,7 @@ public class TransactionService {
 		String userid = UserDao.QueryUserBydNickName(nickname);
 		sellInfo.setSellUserId(userid);
 		Boolean isSuccess = TransactionDao.updateHouseInfo(sellInfo);
-		if (isSuccess)
-			return true;
-		else {
-			return false;
-		}
+		return isSuccess;
 	}
 	/**
 	 * 
@@ -80,11 +77,7 @@ public class TransactionService {
 	 */
 	public Boolean editHouseInfo(SellInfo sellInfo) {
 		Boolean isSuccess = TransactionDao.editHouseInfo(sellInfo);
-		if (isSuccess)
-			return true;
-		else {
-			return false;
-		}
+		return isSuccess;
 	}
 	/**
 	 * @description 添加houseImage信息
@@ -104,5 +97,23 @@ public class TransactionService {
 		else {
 			return false;
 		}	
+	}
+	/**
+	 * 
+	 * @description 获得所有卖房信息，不排序
+	 * @param page 第几页
+	 * @param num 每页几条数据
+	 * @return sellInfo 对应的sell_info的数组，null没有查询到和出现异常
+	 */
+	public SellInfo[] QuerySellInfo(int page,int num) {
+		ArrayList<SellInfo> sellInfoList = BuyDao.QuerySellInfo(page, num);
+		if (sellInfoList != null) {
+			SellInfo[] sellInfos = new SellInfo[sellInfoList.size()];
+			for (int i = 0; i < sellInfoList.size(); i++) {
+				sellInfos[i] = (SellInfo) sellInfoList.get(i);
+			}
+			return sellInfos;
+		}
+		return null;
 	}
 }
