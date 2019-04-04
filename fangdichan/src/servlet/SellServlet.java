@@ -54,6 +54,8 @@ public class SellServlet extends HttpServlet {
 			updateHouseInfo(request, response);
 		} else if ("editHouseInfoPage".equals(method)) {
 			editHouseInfoPage(request, response);
+		} else if ("showHouseInfo".equals(method)) {
+			showHouseInfo(request, response);
 		} else if ("editHouseInfo".equals(method)) {
 			editHouseInfo(request, response);
 		}else if ("updateHouseImg".equals(method)) {
@@ -142,7 +144,24 @@ public class SellServlet extends HttpServlet {
 			response.sendRedirect("index.jsp");
 		}
 	}
-
+	private void showHouseInfo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		PrintWriter out = response.getWriter();
+		JSONObject json = new JSONObject();
+		String id = request.getParameter("sellInfoId");
+		TransactionService transactionService = new TransactionService();
+		SellInfo sellInfo = transactionService.GetHouseBase(id);
+		if (sellInfo != null) {
+			json.put("code",0);
+			json.put("message","搜索成功");
+			json.put("data", sellInfo);
+		} else {
+			json.put("code",1);
+			json.put("message","没有结果");
+			json.put("data", null);
+		}
+		out.print(json);
+		out.close();
+	}
 	private void editHouseInfo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
 		SellInfo sellInfo = new SellInfo(request.getParameter("sellInfoId"), null, // houseBaseId可以不用

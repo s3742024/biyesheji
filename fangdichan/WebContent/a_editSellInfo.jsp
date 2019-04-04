@@ -169,7 +169,6 @@
 	layui.use('form', function(){
 				var form = layui.form; 
         form.render();
-
 		});
 	$(document).ready(function(){
 		changeSelect("houseOrientation","${sellInfo.houseBase.getHouseOrientation()}");

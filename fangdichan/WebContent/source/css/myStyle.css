@@ -1,5 +1,23 @@
 @charset "UTF-8";
-
+.layui-tab{
+	overflow: hidden;
+}
+.layui-tab-title li{
+    display: block;
+}
+.layui-tab-title{
+    float: left;
+    height:auto;
+    width: 200px;
+}
+.layui-tab-content{
+    float: left;
+    width: auto;
+}
+.layui-tab-title li{
+	height: 70px;
+	font-size:x-large;
+}
 @media screen and (max-width: 992px) {
 	.layui-container {
 		width: auto;
@@ -202,6 +220,9 @@
 	width: 100%;
 	height:auto;
 }
+.buy-img-show{
+	height:100%;
+}
 .buy-item-text{
 	padding: 20px 20px;
 }
@@ -220,4 +241,8 @@
 	height: auto;
 	padding:10px 0;
 	font-size:1.2em;
+}
+.buy-all-img{
+	margin-left:200px;
+	padding: 0 20px;
 }

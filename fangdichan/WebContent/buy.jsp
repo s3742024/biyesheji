@@ -9,7 +9,7 @@
 	<div class="buy-search">
 		房屋信息检索
 	</div>
-	<div id="buy-search">>
+	<div id="buy-main">
 		
 	</div>
 	<button class="layui-btn layui-btn-fluid buy-more" onclick="moreQuery()">点击加载更多...</button>
@@ -29,7 +29,8 @@
 
 	<script id="dt" type="text/html">
 		{{#  layui.each(d, function(index, item){ }}
-			<div class="layui-row buy-box">
+			<div class="layui-row buy-box" onclick=getDetail('{{item.sellInfoId}}')>
+			
 			<div class="layui-col-md2">
 		  	<img alt="" src="https://pic1.ajkimg.com/display/hj/ae14250ba1ab179d163aeb5f579da09c/240x180c.jpg?t=1" class="buy-img">
 			</div>
@@ -37,6 +38,7 @@
 			 	<p class="buy-text-title">{{ item.sellTitle }}<p>
 			 	<p class="buy-text-info">
 					<i class="layui-icon">&#xe623;</i><span>{{ item.houseBase.houseLayout }}</span>
+					<i class="layui-icon">&#xe623;</i><span>{{ item.houseBase.constructionArea }}</span>cm<sup>2</sup>
 					<i class="layui-icon">&#xe623;</i><span>{{ item.houseBase.decorationDegree }}</span>
 					<i class="layui-icon">&#xe623;</i><span>{{ item.houseBase.houseType }}</span><p>
 			 	<p class="buy-text-position">{{ item.houseBase.detailPosition }}</p>
@@ -59,7 +61,7 @@
 			i.houseBase.houseType=houseType[i.houseBase.houseType];
 		}
 		var getTpl = dt.innerHTML;
-		var view = document.getElementById('buy-search');
+		var view = document.getElementById('buy-main');
 		layui.use('laytpl', function(){
 			  var laytpl = layui.laytpl;
 			  laytpl(getTpl).render(data, function(html){
@@ -102,9 +104,10 @@
 		function moreQuery() {
 			page++;
 			getInfo();
-			console.log(num,page);
 		}
-		
+		function getDetail(sellInfoId){
+			$('#mainArea').load("a_buyDetail.jsp",{"sellInfoId":sellInfoId})
+		}
 	</script>
 </body>
 </html>
