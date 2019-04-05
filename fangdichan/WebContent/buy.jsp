@@ -46,6 +46,7 @@
 			<div class="layui-col-md3 buy-text-price">
 			  	{{item.sellPrice}}万
 			</div>
+			<hr class="layui-bg-green">
 			</div>
 		{{#  }); }}
 		

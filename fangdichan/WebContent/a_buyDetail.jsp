@@ -28,7 +28,7 @@
 					<li>权限分配</li>
 					<li>商品管理</li>
 				</ul>
-				<div class="layui-tab-content buy-all-img" style="float:none">
+				<div class="layui-tab-content buy-all-img" style="float: none">
 					<div class="layui-tab-item layui-show">
 						<div class="layui-carousel" id="buy-img-1">
 							<div carousel-item style="text-align: center">
@@ -47,10 +47,70 @@
 					<div class="layui-tab-item">内容4</div>
 				</div>
 			</div>
-
+			<div class="layui-row" id="buy-houseInfo-desc">
+				<p class="buy-text-title">房屋信息</p>
+				<hr class="layui-bg-green">
+				<div class="layui-col-md6">
+					<p>
+						<span>详细地址：</span><span>1</span>
+					</p>
+					<p>
+						<span>最高楼层：</span><span>1</span>
+					</p>
+					<p>
+						<span>基本户型：</span><span>1</span>
+					</p>
+					<p>
+						<span>房屋朝向：</span><span>1</span>
+					</p>
+					<p>
+						<span>装修程度：</span><span>1</span>
+					</p>
+					<p>
+						<span>房屋类型：</span><span>1</span>
+					</p>
+				</div>
+				<div class="layui-col-md6">
+					<p>
+						<span>抵押状况：</span><span>1</span>
+					</p>
+					<p>
+						<span>竣工时间：</span><span>1</span>
+					</p>
+					<p>
+						<span>卖出时间：</span><span>1</span>
+					</p>
+					<p>
+						<span>房屋编号：</span><span>1</span>
+					</p>
+					<p>
+						<span>审核状态：</span><span>1</span>
+					</p>
+				</div>
+			</div>
 		</div>
+
+
 		<div class="layui-col-md3">联系人</div>
 	</div>
+	<div>
+		<p class="buy-text-title">核心卖点</p>
+				<hr class="layui-bg-green">
+				<p>1</p>
+				<p class="buy-text-title">业主心态</p>
+				<hr class="layui-bg-green">
+				<p>1</p>
+	</div>
+	<div>
+		<p class="buy-text-title">地图展示</p>
+	</div>
+	<div>
+		<p class="buy-text-title">相关推荐</p>
+	</div>
+	<script type="text/html">
+		
+	</script>
+	
 	<script>
 	$.ajax({
 		type : "post",
