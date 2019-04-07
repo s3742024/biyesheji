@@ -55,11 +55,12 @@
 	var page=1;
 	var num=4;
 	function render(data){
+		console.log(data)
 		var decorationDegree=['毛坯','简装修','精装修','豪华装修'];
 		var houseType=['公寓','普通住宅','别墅','平房','其他'];
 		for(var i of data){
-			i.houseBase.decorationDegree=decorationDegree[i.houseBase.decorationDegree];
-			i.houseBase.houseType=houseType[i.houseBase.houseType];
+			i.houseBase.decorationDegree=decorationDegree[i.houseBase.decorationDegree-1];
+			i.houseBase.houseType=houseType[i.houseBase.houseType-1];
 		}
 		var getTpl = dt.innerHTML;
 		var view = document.getElementById('buy-main');

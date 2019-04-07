@@ -2,9 +2,7 @@
 .layui-tab{
 	overflow: hidden;
 }
-.layui-tab-title li{
-    display: block;
-}
+
 .layui-tab-title{
     float: left;
     height:auto;
@@ -15,8 +13,13 @@
     width: auto;
 }
 .layui-tab-title li{
+	display: block;
+  line-height:70px;
 	height: 70px;
 	font-size:x-large;
+}
+.layui-tab-card>.layui-tab-title .layui-this{
+	background-color: #f8f8f8;
 }
 @media screen and (max-width: 992px) {
 	.layui-container {
@@ -216,6 +219,9 @@
 .buy-box:hover{
 	background-color: #eee;
 }
+.buy-box:hover .buy-text-title{
+	text-decoration: underline;
+}
 .buy-img{
 	width: 100%;
 	height:auto;
@@ -224,10 +230,11 @@
 	height:100%;
 }
 .buy-item-text{
-	padding: 20px 20px;
+	padding: 5px 20px;
 }
 .buy-text-title{
 	font-size:1.3em;
+	margin-top:10px;
 	margin-bottom:10px;
 	font-weight: bolder;
 }
@@ -244,5 +251,5 @@
 }
 .buy-all-img{
 	margin-left:200px;
-	padding: 0 20px;
+	padding: 0;
 }

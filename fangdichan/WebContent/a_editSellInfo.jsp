@@ -74,7 +74,7 @@
 						<option value="5">东南</option>
 						<option value="6">东北</option>
 						<option value="7">西南</option>
-						<option value="8">西南</option>
+						<option value="8">西北</option>
 					</select>
 				</div>
 			</div>
