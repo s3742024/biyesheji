@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import bean.Contact;
 import bean.HouseBase;
 import bean.SellInfo;
 import net.sf.json.JSONObject;
@@ -114,6 +115,7 @@ public class SellServlet extends HttpServlet {
 
 	private void updateHouseInfo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
+		Contact contact=new Contact(request.getParameter("contactCall"), request.getParameter("contactPhone"));
 		HouseBase houseBase = new HouseBase(request.getParameter("pId"), request.getParameter("detailPosition"), request.getParameter("maxFloorNum"), request.getParameter("constructionArea"),
 				request.getParameter("houseLayout"), request.getParameter("houseOrientation"), request.getParameter("houseOrientation"), request.getParameter("decorationDegree"),
 				request.getParameter("mortgageStatus"), request.getParameter("completionDate"), request.getParameter("eastLongitude"), request.getParameter("northLatitude"));
@@ -121,6 +123,7 @@ public class SellServlet extends HttpServlet {
 				null, // 用户id留空
 				request.getParameter("sellPrice"), request.getParameter("sellPoint"), request.getParameter("sellMentality"), null);
 		sellInfo.setHouseBase(houseBase);// 添加进去
+		sellInfo.setContact(contact);
 		TransactionService transactionService = new TransactionService();
 		if (transactionService.updateHouseInfo(sellInfo, request.getParameter("nickname"))) {
 			out.print("添加成功");
@@ -179,8 +182,6 @@ public class SellServlet extends HttpServlet {
 	}
 	private void updateHouseImg(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("啊");
-		TransactionService transactionService = new TransactionService();
-		
-		
+		TransactionService transactionService = new TransactionService();	
 	}
 }

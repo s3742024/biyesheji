@@ -113,6 +113,12 @@ public class SellInfo{
 	public void setHouseBase(HouseBase houseBase) {
 		this.houseBase = houseBase;
 	}
+	public Contact getContact() {
+		return contact;
+	}
+	public void setContact(Contact contact) {
+		this.contact = contact;
+	}
 	private String sellInfoId;
 	private String houseBaseId;
 	private String sellTitle;
@@ -123,4 +129,6 @@ public class SellInfo{
 	private String sellMentality;
 	private String contactInfoId;
 	private HouseBase houseBase;
+	private Contact contact;
+	
 }

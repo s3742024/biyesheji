@@ -146,20 +146,23 @@ public class TransactionDao {
 
 	/**
 	 * 
-	 * @description 插入房屋基本信息和卖房信息
-	 * @param sellInfo 卖出信息，里面有houseBase 基本信息
+	 * @description 插入联系人信息，房屋基本信息和卖房信息
+	 * @param sellInfo 卖出信息，里面有houseBase 基本信息，contact联系人信息
 	 * @return true=成功 false=失败
 	 */
 	public static boolean updateHouseInfo(SellInfo sellInfo) {
 		try {
-			String sql = "insert into s_house_base values(?,?,?,?,?,?,?,?,?,?,?,?,?);insert into s_sell_info values(?,?,?,?,?,?,?,?,?)";
+			String sql = "insert into a_contact_info values(?,?,?);insert into s_house_base values(?,?,?,?,?,?,?,?,?,?,?,?,?);insert into s_sell_info values(?,?,?,?,?,?,?,?,?)";
 			HouseBase houseBase = sellInfo.getHouseBase();
-			Object[] params = { houseBase.getHouseBaseId(), // 前13个
+			Object[] params = {sellInfo.getContact().getContactinfoId(),// 前3个
+					sellInfo.getContact().getContactCall(),
+					sellInfo.getContact().getContactPhone(),
+					houseBase.getHouseBaseId(), // 中13个
 					houseBase.getpId(), houseBase.getDetailPosition(), houseBase.getMaxFloorNum(), houseBase.getConstructionArea(), houseBase.getHouseLayout(), houseBase.getHouseOrientation(),
 					houseBase.getHouseType(), houseBase.getDecorationDegree(), houseBase.getMortgageStatus(), houseBase.getCompletionDate(), houseBase.getEastLongitude(), houseBase.getNorthLatitude(),
 					sellInfo.getSellInfoId(), // 后9个
 					sellInfo.getHouseBaseId(), sellInfo.getSellTitle(), sellInfo.getSellDate(), sellInfo.getSellUserId(), sellInfo.getSellPrice(), sellInfo.getSellPoint(), sellInfo.getSellMentality(),
-					sellInfo.getContactInfoId() };
+					sellInfo.getContact().getContactinfoId() };
 			res = JDBCUtils.executeUpdate(sql, params);
 			return res;
 		} catch (Exception e) {

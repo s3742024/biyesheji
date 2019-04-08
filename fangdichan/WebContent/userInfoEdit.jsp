@@ -59,7 +59,7 @@
 					</dl></li>
 			</ul>
 		</div>
-		<div class="layui-col-md9" style="background-color: #eca;"">
+		<div class="layui-col-md9" style="background-color: #eca;">
 			<div class="layui-row sell-main" style="min-height: 1000px;">
 				<c:if test="${empty sessionScope.userNickname}">
 						请先登录

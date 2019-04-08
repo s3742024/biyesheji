@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,10 +29,18 @@
 								<div>
 									<img alt="" src="https://pic1.ajkimg.com/display/hj/ae14250ba1ab179d163aeb5f579da09c/240x180c.jpg?t=1" class="buy-img-show">
 								</div>
-								<div>条目2</div>
-								<div>条目3</div>
-								<div>条目4</div>
-								<div>条目5</div>
+								<div>
+									<img alt="" src="https://pic1.ajkimg.com/display/anjuke/59f551-%E7%90%86%E6%83%B3%E7%BD%AE%E4%B8%9A/ab8def1cc08413f08e049a79047efb3d-599x450.jpg?t=1" class="buy-img-show">
+								</div>
+								<div>
+									<img alt="" src="https://pic1.ajkimg.com/display/anjuke/ba0af5-%E9%BA%A6%E7%A6%BE%E6%88%BF%E5%9C%B0%E4%BA%A7/61e33afc051a9c5229b5e324ff88aeea-599x450.jpg?t=1" class="buy-img-show">
+								</div>
+								<div>
+									<img alt="" src="https://pic1.ajkimg.com/display/anjuke/9b32ca-%E9%BA%A6%E7%A6%BE%E6%88%BF%E5%9C%B0%E4%BA%A7/5c8ec5e319a9a659a18014812aad1811-599x450.jpg?t=1" class="buy-img-show">
+								</div>
+								<div>
+									<img alt="" src="https://pic1.ajkimg.com/display/anjuke/a9850d-%E9%BA%A6%E7%A6%BE%E6%88%BF%E5%9C%B0%E4%BA%A7/07ae7e8b69be620faf589a81664095ba-599x450.jpg?t=1" class="buy-img-show">
+								</div>
 							</div>
 						</div>
 					</div>
@@ -41,10 +50,10 @@
 				</div>
 			</div>
 			<div class="layui-row" id="buy-houseInfo-desc"></div>
-			<div id="buy-introduce" ></div>
-			<div >
+			<div id="buy-introduce"></div>
+			<div>
 				<p class="buy-text-title" id="buy-map">地图展示</p>
-				
+
 			</div>
 			<div>
 				<p class="buy-text-title">相关推荐</p>
@@ -52,7 +61,15 @@
 		</div>
 
 
-		<div class="layui-col-md3">联系人</div>
+		<div class="layui-col-md3 user-status" id="buy-contact">
+			<c:if test="${empty sessionScope.userNickname}">
+						登录可进行买房申请
+					<%-- <c:import url="userLogin.jsp"></c:import> --%>
+			</c:if>
+			<c:if test="${not empty sessionScope.userNickname}">
+				<c:import url="contact.jsp"></c:import>
+			</c:if>
+		</div>
 	</div>
 	<script type="text/html" id="buyHeaderTpl">
 			<p class="buy-text-title">{{ d.sellTitle }}
@@ -111,6 +128,7 @@
 	<script>
 	var eastLongitude=0;
 	var northLatitude=0;
+	//$('#buy-contact').load("contact.jsp")
 	$.ajax({
 		type : "post",
 		url : "SellServlet",
@@ -125,10 +143,9 @@
 			alert("未知错误");
 		})
 		function render(data) {
-			eastLongitude=data.houseBase.eastLongitude;
-			northLatitude=data.houseBase.northLatitude;
+			eastLongitude = data.houseBase.eastLongitude;
+			northLatitude = data.houseBase.northLatitude;
 			$('#buy-map').after("<iframe src=\"mapDirection.html\" width=\"100%\" height=\"400\" scrolling=\"no\" ></iframe>");
-			
 			var decorationDegree = [ '毛坯', '简装修', '精装修', '豪华装修' ];
 			var houseType = [ '公寓', '普通住宅', '别墅', '平房', '其他' ];
 			var mortgageStatus = [ '有', '无' ];

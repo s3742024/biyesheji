@@ -168,6 +168,21 @@
 						<textarea name="sellMentality" placeholder="请输入内容" class="layui-textarea"></textarea>
 					</div>
 				</div>
+				<div class="layui-form-item">
+					<div class=" layui-inline">
+						<label class="layui-form-label">联系人称呼</label>
+						<div class="layui-input-inline">
+							<input type="text" name="contactCall" lay-verify="required" autocomplete="off" placeholder="（例如：东先生）" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-inline">
+						<label class="layui-form-label">联系电话</label>
+						<div class="layui-input-inline">
+							<input type="text" name="contactPhone" lay-verify="required" autocomplete="off" placeholder="（例如：173*******1）" class="layui-input">
+						</div>
+					</div>
+				</div>
+
 				<!-- 					提交 -->
 				<div class="layui-form-item">
 					<div class="layui-input-block">
@@ -245,7 +260,8 @@
 					"sellPrice" : $("input[name='sellPrice']").val(),
 					"sellPoint" : $("textarea[name='sellPoint']").val(),
 					"sellMentality" : $("textarea[name='sellMentality']").val(),
-					
+					"contactCall" : $("input[name='contactCall']").val(),
+					"contactPhone" : $("input[name='contactPhone']").val(),
 			};
 		$.ajax({
 				type : "post",
