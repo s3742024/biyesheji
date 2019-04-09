@@ -2,6 +2,8 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.Contact;
+import bean.Purchase;
 import bean.SellInfo;
 import net.sf.json.JSONObject;
 import service.TransactionService;
@@ -32,6 +36,8 @@ public class BuyServlet extends HttpServlet {
 		System.out.println("method" + method);
 		if ("default".equals(method)) {
 			queryDefault(request, response);
+		}else if ("buyContextInfo".equals(method)) {
+			buyContextInfo(request, response);
 		}
 	}
 	private void queryDefault(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -47,6 +53,25 @@ public class BuyServlet extends HttpServlet {
 		}else {
 			json.put("code",1);
 		}
+		out.print(json);
+		out.close();
+	}
+	private void buyContextInfo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		PrintWriter out = response.getWriter();
+		JSONObject json=new JSONObject();
+		TransactionService transactionService=new TransactionService();
+		Contact contact = new Contact(request.getParameter("contactCall"), request.getParameter("contactPhone"));
+		Purchase purchase = new Purchase(request.getParameter("sellInfoId"),new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()), request.getParameter("purchaseUserId"), request.getParameter("purchaseRemarks"));
+		purchase.setContact(contact);
+		Contact contact2 = transactionService.InputPurchaseInfo(purchase, request.getParameter("userNickname"));
+		if(contact2 !=null){
+			json.put("code",0);
+			json.put("data",contact2);
+		}else {
+			json.put("code",1);
+		}
+		
+
 		out.print(json);
 		out.close();
 	}

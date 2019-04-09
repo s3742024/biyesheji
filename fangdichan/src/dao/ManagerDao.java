@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import bean.Contact;
 import bean.SellAudit;
 import bean.SellInfo;
 import util.JDBCUtils;
@@ -77,6 +78,34 @@ public class ManagerDao {
 				return null;
 			else
 				return sellAudits;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			JDBCUtils.close(rs);
+		}
+	}
+	/**
+	 * 
+	 * @description 查询所有联系人信息
+	 * @return contact的数组，null为出错或者没有查询到
+	 */
+	public static ArrayList<Contact>  queryAllContact() {
+		try {
+			String sql = "select * from a_contact_info";
+			rs = JDBCUtils.executeQuery(sql,null);
+			ArrayList<Contact> contacts = new ArrayList<Contact>();
+			while (rs.next()) {// 找到
+				String contactinfoId = rs.getString("contact_info_id");
+				String contactCall = rs.getString("contact_call");
+				String contactPhone = rs.getString("contact_phone");
+				Contact contact = new Contact(contactinfoId,contactCall,contactPhone);
+				contacts.add(contact);
+			}
+			if (contacts.size() == 0)
+				return null;
+			else
+				return contacts;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

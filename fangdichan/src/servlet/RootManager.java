@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.Contact;
 import bean.HouseBase;
 import bean.RealInfo;
 import bean.SellAudit;
@@ -49,6 +50,8 @@ public class RootManager extends HttpServlet {
 			QueryAllToBeAudited(request, response);
 		}else if ("audit".equals(method)) {
 			audit(request, response);
+		}else if("queryAllContact".equals(method)) {
+			queryAllContact(request, response);
 		}
 	}
 	private void queryUserInfo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -150,6 +153,21 @@ public class RootManager extends HttpServlet {
 		}else {
 			json.put("code",1);
 			json.put("message","审核事件失败");
+		}
+		out.print(json);
+		out.close();
+	}
+	private void queryAllContact(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		PrintWriter out = response.getWriter();
+		JSONObject json=new JSONObject();
+		RootService rootService=new RootService();
+		ArrayList<Contact> contacts= rootService.queryAllContact();
+		if(contacts!=null) {
+			json.put("code",0);
+			json.put("data",contacts);
+		}else {
+			json.put("code",1);
+			json.put("message","查询失败");
 		}
 		out.print(json);
 		out.close();

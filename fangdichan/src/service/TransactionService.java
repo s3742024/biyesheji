@@ -2,8 +2,10 @@ package service;
 
 import java.util.ArrayList;
 
+import bean.Contact;
 import bean.HouseBase;
 import bean.HouseImage;
+import bean.Purchase;
 import bean.SellInfo;
 import dao.BuyDao;
 import dao.TransactionDao;
@@ -60,7 +62,7 @@ public class TransactionService {
 	 * 
 	 * @description 插入卖房信息和交易信息
 	 * @param sellInfo 卖出信息 里面有houseBase 基本信息
-	 * @param sellInfo 用户昵称
+	 * @param nickname 用户昵称
 	 * @return true=成功 false=失败
 	 */
 	public Boolean updateHouseInfo(SellInfo sellInfo, String nickname) {
@@ -115,5 +117,25 @@ public class TransactionService {
 			return sellInfos;
 		}
 		return null;
+	}
+	/**
+	 * 
+	 * @description 给a_contact_info s_purchase_info添加新的记录
+	 * @param Purchase 买房申请bean类 包含 Contact类
+	 * @param nickname 用户昵称
+	 * @return 返回找到的卖房者联系人信息 null为添加出错或查询出错
+	 */
+	public Contact InputPurchaseInfo(Purchase purchase,String nickname) {
+		String userid = UserDao.QueryUserBydNickName(nickname);
+		if(userid==null)
+			return null;
+		
+		purchase.setpurchaseUserId(userid);
+		Boolean isSuccess = BuyDao.InputPurchaseInfo(purchase);
+		if(isSuccess) {
+			Contact contact=BuyDao.QueryContactBySellInfoId(purchase.getsellInfoId());
+			return contact;
+		}else
+			return null;
 	}
 }

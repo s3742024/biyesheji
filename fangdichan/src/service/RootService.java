@@ -2,6 +2,7 @@ package service;
 
 import java.util.ArrayList;
 
+import bean.Contact;
 import bean.HouseBase;
 import bean.RealInfo;
 import bean.SellAudit;
@@ -96,6 +97,19 @@ public class RootService {
 		ArrayList<SellAudit> sellAudits=ManagerDao.QueryAuditedById(userid);
 		if(sellAudits!=null) {
 			return sellAudits;
+		}else {
+			return null;
+		}
+	}
+	/**
+	 * 
+	 * @description 查询所有联系人信息
+	 * @return contact的数组，null为出错或者没有查询到
+	 */
+	public ArrayList<Contact> queryAllContact(){
+		ArrayList<Contact> contacts=ManagerDao.queryAllContact();
+		if(contacts!=null) {
+			return contacts;
 		}else {
 			return null;
 		}

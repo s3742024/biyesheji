@@ -6,7 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import bean.Contact;
 import bean.HouseBase;
+import bean.Purchase;
 import bean.SellInfo;
 import util.JDBCUtils;
 
@@ -65,6 +67,60 @@ public class BuyDao {
 			String sql = "select top "+ num +" * from (select row_number() over(order by sell_date asc) as rownumber,* from houserAllInfo_b) temp_row where rownumber>"+num*(page-1);
 			rs = JDBCUtils.executeQuery(sql, null);
 			return transformation(rs);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			JDBCUtils.close(rs);
+		}
+	}
+	/**
+	 * 
+	 * @description 给a_contact_info s_purchase_info添加新的记录
+	 * @param Purchase 买房申请bean类 包含 Contact类
+	 * @return true=成功false=出错
+	 */
+	public static boolean InputPurchaseInfo(Purchase purchase) {
+		try {
+			String sql = "insert into a_contact_info values(?,?,?);insert into s_purchase_info values(?,?,?,?,?,?)";
+			Object[] params = { purchase.getContact().getContactinfoId(),//前3个
+			purchase.getContact().getContactCall(),
+			purchase.getContact().getContactPhone(),
+			purchase.getpurchaseApplicationId(),//后6个
+			purchase.getsellInfoId(),
+			purchase.getapplyDate(),
+			purchase.getpurchaseUserId(),
+			purchase.getContact().getContactinfoId(),
+			purchase.getpurchaseRemarks()};
+			res = JDBCUtils.executeUpdate(sql, params);
+			return res;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			JDBCUtils.close(rs);
+		}
+	}
+	/**
+	 * 
+	 * @description 根据卖房信息获取卖房者联系人信息
+	 * @param sellInfoId 卖房信息id
+	 * @return Contact的bean类，null没有查询到和出现异常
+	 */
+	public static Contact QueryContactBySellInfoId(String sellInfoId) {
+		try {
+			String sql = "select a_contact_info.* from a_contact_info,s_sell_info where s_sell_info.sell_info_id=? and  s_sell_info.contact_info_id=a_contact_info.contact_info_id ";
+			Object[] params = {sellInfoId};
+			rs = JDBCUtils.executeQuery(sql, params);
+			if (rs.next()) {// 找到
+				String contactinfoId = rs.getString("contact_info_id");
+				String contactCall = rs.getString("contact_call");
+				String contactPhone = rs.getString("contact_phone");
+				Contact contact=new Contact(contactinfoId, contactCall, contactPhone);
+				return contact;
+			} else {// 没有找到
+				return null;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
