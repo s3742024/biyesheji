@@ -77,6 +77,30 @@ public class BuyDao {
 	}
 	/**
 	 * 
+	 * @description 获得所有卖房信息，不排序
+	 * @param page 第几页
+	 * @param num 每页几条数据
+	 * @param minPrice 最小价格
+	 * @param maxPrice 最高价格
+	 * @param minArea 最小面积
+	 * @param maxArea 最大面积
+	 * @return sellInfo 对应的sell_info的数组，null没有查询到和出现异常
+	 */
+	public static ArrayList<SellInfo> QuerySellInfoAlter(int page,int num,int minPrice,int maxPrice,int minArea,int maxArea) {
+		try {//这里只能用字符串拼接不然会出错
+			String sql = "select * from HouseInfoLimitAll(?,?,?,?,?,?)";
+			Object[] params = {page,num,minPrice,maxPrice,minArea,maxArea};
+			rs = JDBCUtils.executeQuery(sql, params);
+			return transformation(rs);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			JDBCUtils.close(rs);
+		}
+	}
+	/**
+	 * 
 	 * @description 给a_contact_info s_purchase_info添加新的记录
 	 * @param Purchase 买房申请bean类 包含 Contact类
 	 * @return true=成功false=出错

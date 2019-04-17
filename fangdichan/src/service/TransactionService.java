@@ -109,6 +109,30 @@ public class TransactionService {
 	 */
 	public SellInfo[] QuerySellInfo(int page,int num) {
 		ArrayList<SellInfo> sellInfoList = BuyDao.QuerySellInfo(page, num);
+		
+		if (sellInfoList != null) {
+			SellInfo[] sellInfos = new SellInfo[sellInfoList.size()];
+			for (int i = 0; i < sellInfoList.size(); i++) {
+				sellInfos[i] = (SellInfo) sellInfoList.get(i);
+			}
+			return sellInfos;
+		}
+		return null;
+	}
+	/**
+	 * 
+	 * @description 获得所有卖房信息，不排序
+	 * @param page 第几页
+	 * @param num 每页几条数据
+	 * @param minPrice 最小价格
+	 * @param maxPrice 最高价格
+	 * @param minArea 最小面积
+	 * @param maxArea 最大面积
+	 * @return sellInfo 对应的sell_info的数组，null没有查询到和出现异常
+	 */
+	public SellInfo[] QuerySellInfoAlter(int page,int num,int minPrice,int maxPrice,int minArea,int maxArea) {
+		ArrayList<SellInfo> sellInfoList = BuyDao.QuerySellInfoAlter(page, num,minPrice,maxPrice,minArea,maxArea);
+		
 		if (sellInfoList != null) {
 			SellInfo[] sellInfos = new SellInfo[sellInfoList.size()];
 			for (int i = 0; i < sellInfoList.size(); i++) {

@@ -45,8 +45,12 @@ public class BuyServlet extends HttpServlet {
 		JSONObject json=new JSONObject();
 		int page = Integer.parseInt(request.getParameter("page"));;
 		int num = Integer.parseInt(request.getParameter("num"));
+		int minPrice = Integer.parseInt(request.getParameter("minPrice")) ;
+		int maxPrice = Integer.parseInt(request.getParameter("maxPrice")) ;
+		int minArea = Integer.parseInt(request.getParameter("minArea")) ;
+		int maxArea = Integer.parseInt(request.getParameter("maxArea")) ;
 		TransactionService transactionService = new TransactionService();
-		SellInfo[] sellInfos = transactionService.QuerySellInfo(page, num);
+		SellInfo[] sellInfos = transactionService.QuerySellInfoAlter(page, num,minPrice,maxPrice,minArea,maxArea);
 		if(sellInfos!=null) {
 			json.put("code",0);
 			json.put("data",sellInfos);
