@@ -75,7 +75,7 @@
 			<p class="buy-text-title">{{ d.sellTitle }}
 		<p>
 		<p class="buy-text-info">
-			<span class="buy-text-price">{{d.sellPrice}}万</span> <i class="layui-icon">&#xe623;</i><span>{{ d.houseBase.constructionArea }}</span>cm<sup>2</sup> <i class="layui-icon">&#xe623;</i><span>{{
+			<span class="buy-text-price">{{d.sellPrice}}万</span> <i class="layui-icon">&#xe623;</i><span>{{ d.houseBase.constructionArea }}</span>m<sup>2</sup> <i class="layui-icon">&#xe623;</i><span>{{
 				d.houseBase.houseLayout }}</span>
 		<p>
 	</script>

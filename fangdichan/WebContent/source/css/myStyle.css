@@ -1,4 +1,13 @@
 @charset "UTF-8";
+.layui-card{
+	box-shadow: 0 2px 4px #4caf50f0;
+}
+.layui-breadcrumb{
+	visibility: visible;
+}
+.layui-breadcrumb a{
+	padding-left: 20px;
+}
 .layui-tab{
 	overflow: hidden;
 }
@@ -214,13 +223,17 @@
 
 /* buy */
 .buy-box{
-	margin:5px 0;
+	margin:15px 0;
 }
 .buy-box:hover{
-	background-color: #eee;
+	box-shadow: none;
+	background-color: #c5eac787;
 }
 .buy-box:hover .buy-text-title{
 	text-decoration: underline;
+}
+.buy-search{
+	margin-top:10px;
 }
 .buy-img{
 	width: 100%;
@@ -248,6 +261,7 @@
 	height: auto;
 	padding:10px 0;
 	font-size:1.2em;
+	margin-top:20px;
 }
 .buy-all-img{
 	margin-left:200px;

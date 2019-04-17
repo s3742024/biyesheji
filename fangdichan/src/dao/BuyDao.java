@@ -64,8 +64,9 @@ public class BuyDao {
 	 */
 	public static ArrayList<SellInfo> QuerySellInfo(int page,int num) {
 		try {//这里只能用字符串拼接不然会出错
-			String sql = "select top "+ num +" * from (select row_number() over(order by sell_date asc) as rownumber,* from houserAllInfo_b) temp_row where rownumber>"+num*(page-1);
-			rs = JDBCUtils.executeQuery(sql, null);
+			String sql = "select * from GetAllHouseInfo(?,?)";
+			Object[] params = {page,num};
+			rs = JDBCUtils.executeQuery(sql, params);
 			return transformation(rs);
 		} catch (Exception e) {
 			e.printStackTrace();

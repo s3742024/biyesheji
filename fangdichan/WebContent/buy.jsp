@@ -5,9 +5,74 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<script type="text/javascript">
+console.log()
+layui.use('element', function(){
+	  var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+	  
+	  //监听导航点击
+	  element.on('nav(demo)', function(elem){
+	    //console.log(elem)
+	    layer.msg(elem.text());
+	  });
+	});
+</script>
 <body>
-	<div class="buy-search">
-		房屋信息检索
+	<div class="layui-card buy-search">
+		<div class="layui-card-body">
+			<span class="layui-breadcrumb">
+			  <span>区域:</span>
+			  <a href="">全部</a>
+			  <a href="">新吴</a>
+			  <a href="">滨湖</a>
+			  <a href="">梁溪</a>
+			  <a href="">惠山</a>
+			  <a href="">锡山</a>
+			  <a href="">无锡周边</a>
+			</span>
+			<hr class="layui-bg-green">
+			
+			<span class="layui-breadcrumb">
+			  <span >售价:</span>
+			  <a href="">全部</a>
+			  <a href="">50万以下</a>
+			  <a href="">50-60万</a>
+			  <a href="">60-80万</a>
+			  <a href="">100-120万</a>
+			  <a href="">120-150万</a>
+			  <a href="">150-200万</a>
+			  <a href="">200-300万</a>
+			  <a href="">300-500万</a>
+			  <a href="">500万以上</a>
+			</span>
+			<hr class="layui-bg-green">
+			
+			<span class="layui-breadcrumb">
+			  <span >房型:</span>
+			  <a href="">全部</a>
+			  <a href="">50m<sup>2</sup>以下</a>
+			  <a href="">50-60万</a>
+			  <a href="">60-80万</a>
+			  <a href="">100-120万</a>
+			  <a href="">120-150万</a>
+			  <a href="">150-200万</a>
+			  <a href="">200-300万</a>
+			  <a href="">300-500万</a>
+			  <a href="">500万以上</a>
+			</span>
+			<hr class="layui-bg-green">
+			
+			<span class="layui-breadcrumb">
+			  <span>房型:</span>
+			  <a href="">全部</a>
+			  <a href="">一室</a>
+			  <a href="">二室</a>
+			  <a href="">三室</a>
+			  <a href="">四室</a>
+			  <a href="">五室</a>
+			  <a href="">五室以上</a>
+			</span>
+		</div>
 	</div>
 	<div id="buy-main">
 		
@@ -29,29 +94,30 @@
 
 	<script id="dt" type="text/html">
 		{{#  layui.each(d, function(index, item){ }}
-			<div class="layui-row buy-box" onclick=getDetail('{{item.sellInfoId}}')>
-			
-			<div class="layui-col-md2">
-		  	<img alt="" src="https://pic1.ajkimg.com/display/hj/ae14250ba1ab179d163aeb5f579da09c/240x180c.jpg?t=1" class="buy-img">
-			</div>
-			<div class="layui-col-md7 buy-item-text">
-			 	<p class="buy-text-title">{{ item.sellTitle }}<p>
-			 	<p class="buy-text-info">
-					<i class="layui-icon">&#xe623;</i><span>{{ item.houseBase.houseLayout }}</span>
-					<i class="layui-icon">&#xe623;</i><span>{{ item.houseBase.constructionArea }}</span>cm<sup>2</sup>
-					<i class="layui-icon">&#xe623;</i><span>{{ item.houseBase.decorationDegree }}</span>
-					<i class="layui-icon">&#xe623;</i><span>{{ item.houseBase.houseType }}</span><p>
-			 	<p class="buy-text-position">{{ item.houseBase.detailPosition }}</p>
-			</div>
-			<div class="layui-col-md3 buy-text-price">
-			  	{{item.sellPrice}}万
-			</div>
-			<hr class="layui-bg-green">
+			<div class="layui-row layui-card buy-box" onclick=getDetail('{{item.sellInfoId}}')>
+				<div class="layui-card-body">
+					<div class="layui-col-md2">
+		  			<img alt="" src="https://pic1.ajkimg.com/display/hj/ae14250ba1ab179d163aeb5f579da09c/240x180c.jpg?t=1" class="buy-img">
+					</div>
+					<div class="layui-col-md7 buy-item-text">
+			 			<p class="buy-text-title">{{ item.sellTitle }}<p>
+			 			<p class="buy-text-info">
+							<i class="layui-icon">&#xe623;</i><span>{{ item.houseBase.houseLayout }}</span>
+							<i class="layui-icon">&#xe623;</i><span>{{ item.houseBase.constructionArea }}</span>cm<sup>2</sup>
+							<i class="layui-icon">&#xe623;</i><span>{{ item.houseBase.decorationDegree }}</span>
+							<i class="layui-icon">&#xe623;</i><span>{{ item.houseBase.houseType }}</span><p>
+			 			<p class="buy-text-position">{{ item.houseBase.detailPosition }}</p>
+					</div>
+					<div class="layui-col-md3 buy-text-price">
+			  		{{item.sellPrice}}万
+					</div>
+				</div>
 			</div>
 		{{#  }); }}
 		
 	</script>
 	<script type="text/javascript">
+	
 	var page=1;
 	var num=4;
 	function render(data){

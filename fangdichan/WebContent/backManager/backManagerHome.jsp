@@ -4,14 +4,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/source/layui/css/layui.css">
-<script src="${pageContext.request.contextPath}/source/layui/layui.js"></script>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/source/css/backManager.css" />
+
 </head>
 <body>
-	<div class="layui-container titleImg" style="background-image: url('${pageContext.request.contextPath}/source/images/backImg.jpg')"></div>
-	<div class="layui-container layui-row"">
+
 		<div class="layui-col-md3" style="background-color: #dee; min-height: 1000px">
 			<ul class="layui-nav layui-nav-tree" lay-filter="test" id="rootManager">
 			<li class="layui-nav-item layui-nav-itemed"><a href="javascript:void(0);">用户管理</a>
@@ -67,8 +63,7 @@
 		<div class="layui-col-md9 index-main" style="background-color: #eca;min-height: 1000px" id="rootEidtMain">
 			
 		</div>
-	</div>
-		<script>
+	<script>
 		$("#rootManager").click(function(e) {
 			var url = e.target.id;
 			if (url) {
