@@ -30,20 +30,7 @@
 		$("#title").load("header.jsp");
 		$("#mainArea").load("home.jsp");
 		$("#footer").load("footer.jsp");
-		layui.use('carousel', function() {
-			var carousel = layui.carousel;
-			//建造实例
-			carousel.render({
-				elem : '#carousel1',
-				width : '100%',
-				arrow : 'always'
-			});
-			carousel.render({
-				elem : '#carousel2',
-				width : '100%',
-				arrow : 'always'
-			});
-		});
+		
 	</script>
 </body>
 </html>

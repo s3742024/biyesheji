@@ -113,4 +113,28 @@ public class ManagerDao {
 			JDBCUtils.close(rs);
 		}
 	}
+	/**
+	 * 
+	 * @description 根据昵称获和密码获得用户信息
+	 * @param 用户昵称
+	 * @param 用户密码
+	 * @return true=找到,false=没找到
+	 */
+	public static Boolean QueryManagerByPasswordAndNickName(String manager_nickname, String manager_password) {
+		try {
+			String sql = "select * from a_manager where manager_nickname = ? and manager_password = ?";
+			Object[] params = { manager_nickname, manager_password };
+			rs = JDBCUtils.executeQuery(sql, params);
+			if (rs.next()) {// 找到
+				return true;
+			} else {// 没有找到
+				return false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			JDBCUtils.close(rs);
+		}
+	}
 }

@@ -22,9 +22,6 @@
 
 	<div class="login-box">
 
-<!-- 				<form action="LoginServlet" method="post"> -->
-<!-- 					用户名：<input type="text" name="uname"><br> 密 码：<input type="password" name="upwd"><br> <input type="submit" value="登陆"> -->
-<!-- 				</form> -->
 		<form class="layui-form" action="LoginServlet" method="post">
 			<div class="layui-form-item">
 				<p class="login-title">用户登陆</p>
@@ -60,7 +57,6 @@
 	<script type="text/javascript">
 	layui.use('form', function(){
 		  var form = layui.form;
-		  
 		  //监听提交
 		  form.on('submit(formDemo)', function(data){
 		    layer.msg(JSON.stringify(data.field));

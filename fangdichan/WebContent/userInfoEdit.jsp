@@ -27,7 +27,7 @@
 
 	<!-- 	主要区域 -->
 	<div class="layui-container layui-row">
-		<div class="layui-col-md3" style="background-color: #dee; min-height: 1000px">
+		<div class="layui-col-md3" style="background-color: #393d49; min-height: 1200px">
 			<ul class="layui-nav layui-nav-tree" lay-filter="test" id="userManager">
 				<li class="layui-nav-item"><a href="javascript:void(0)" id="editNickname">修改头像昵称</a></li>
 				<li class="layui-nav-item"><a href="javascript:void(0)" id="editPwd">修改登录密码</a></li>
@@ -59,8 +59,8 @@
 					</dl></li>
 			</ul>
 		</div>
-		<div class="layui-col-md9" style="background-color: #eca;">
-			<div class="layui-row sell-main" style="min-height: 1000px;">
+		<div class="layui-col-md9">
+			<div class="layui-row sell-main">
 				<c:if test="${empty sessionScope.userNickname}">
 						请先登录
 				</c:if>

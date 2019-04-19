@@ -4,12 +4,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
 
+</style>
 </head>
 <body>
 
-		<div class="layui-col-md3" style="background-color: #dee; min-height: 1000px">
-			<ul class="layui-nav layui-nav-tree" lay-filter="test" id="rootManager">
+		<div class="layui-col-md2" style="min-height: 1000px;background-color: #393d49;">
+			<ul class="layui-nav  layui-nav-tree" lay-filter="test" id="rootManager">
 			<li class="layui-nav-item layui-nav-itemed"><a href="javascript:void(0);">用户管理</a>
 					<dl class="layui-nav-child">
 						<dd>
@@ -60,7 +62,7 @@
 					</dl></li>
 			</ul>
 		</div>
-		<div class="layui-col-md9 index-main" style="background-color: #eca;min-height: 1000px" id="rootEidtMain">
+		<div class="layui-col-md10 index-main" style="min-height:1000px;border:4px ridge #f0fbeb;" id="rootEidtMain">
 			
 		</div>
 	<script>

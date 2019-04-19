@@ -8,10 +8,10 @@
 </head>
 <body>
 	<div class="layui-row">
-		<div class="layui-col-md8 index-main" style="background-color: #dee">
-			<div class="quick">
-				<div class="layui-row quick-info">快速查询房屋信息</div>
-				<div class="layui-row quick-search">
+		<div class="layui-col-md8 index-main">
+			<div class="layui-card">
+				<div class="quick-info">快速查询房屋信息</div>
+				<div class="quick-search">
 					<input type="text" name="title" required lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
 					<button class="layui-btn layui-btn-fluid">
 						<i class="layui-icon">&#xe615</i>搜索
@@ -21,32 +21,29 @@
 				<div class="quick-price"></div>
 			</div>
 			<div class="index-show-item">
-				<p>热门楼盘>></p>
+				<p class="quick-info">热门楼盘>></p>
 				<div class="layui-row">
 					<div class="layui-carousel" id="carousel1">
 						<div carousel-item>
-							<div>条目1</div>
-							<div>条目2</div>
-							<div>条目3</div>
-							<div>条目4</div>
-							<div>条目5</div>
+							<div><img src="${pageContext.request.contextPath}/source/images/c1_1.png"></img></div>
+							<div><img src="${pageContext.request.contextPath}/source/images/c1_2.png"></img></div>
+							<div><img src="${pageContext.request.contextPath}/source/images/c1_3.png"></img></div>
+							<div><img src="${pageContext.request.contextPath}/source/images/c1_4.png"></img></div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="layui-row ad-1">
+			<div class="ad-1">
 				<img alt="ad1" src="${pageContext.request.contextPath}/source/images/ad1.jpg">
 			</div>
 			<div class="index-show-item">
-				<p>热门导购>></p>
+				<p class="quick-info">热门导购>></p>
 				<div class="layui-row">
 					<div class="layui-carousel" id="carousel2">
 						<div carousel-item>
-							<div>条目1</div>
-							<div>条目2</div>
-							<div>条目3</div>
-							<div>条目4</div>
-							<div>条目5</div>
+							<div><img src="${pageContext.request.contextPath}/source/images/c2_1.png"></img></div>
+							<div><img src="${pageContext.request.contextPath}/source/images/c2_2.png"></img></div>
+							<div><img src="${pageContext.request.contextPath}/source/images/c2_3.png"></img></div>
 						</div>
 					</div>
 				</div>
@@ -55,13 +52,15 @@
 				<img alt="ad2" src="${pageContext.request.contextPath}/source/images/ad2.jpg">
 			</div>
 			<div class="index-show-item">
-				<p>精选>></p>
-				<div class="layui-row" style="background-color: #fcc; height: 150px; width: 100%">精选推荐</div>
+				<p class="quick-info">精选>></p>
+				<div class="layui-row" style="height: 200px; width: 100%">
+					<img src="${pageContext.request.contextPath}/source/images/c3.png" style="width:100%;height:100%"></img>
+				</div>
 			</div>
 		</div>
-		<div class="layui-col-md4 index-main" style="background-color: #eca;">
+		<div class="layui-col-md4 index-main">
 			<!-- 用户状态部分 -->
-			<div class="user-status">
+			<div class="user-status" style="background-color: #0096881c;">
 				<c:if test="${empty sessionScope.userNickname}">
 					<c:import url="userLogin.jsp"></c:import>
 				</c:if>
@@ -74,7 +73,7 @@
 				<legend>新房动态</legend>
 				<div class="layui-field-box index-news">内容区域</div>
 			</fieldset>
-			<div class="layui-row ad-2">
+			<div class="layui-row ad-2" style="height: 330px">
 				<img alt="ad3" src="${pageContext.request.contextPath}/source/images/ad3.jpg">
 			</div>
 			<fieldset class="layui-elem-field">
@@ -129,7 +128,27 @@
 				// 						out.println("数据库连接失败");
 				// 					}
 			%>
+			
 		</div>
 	</div>
+	<script type="text/javascript">
+	layui.use('carousel', function() {
+		var carousel = layui.carousel;
+		//建造实例
+		carousel.render({
+			elem : '#carousel1',
+			width : '100%',
+			height: '350px',
+			arrow : 'always',
+			/* indicator: 'none' */
+		});
+		carousel.render({
+			elem : '#carousel2',
+			width : '100%',
+			height: '350px',
+			arrow : 'always'
+		});
+	});
+	</script>
 </body>
 </html>

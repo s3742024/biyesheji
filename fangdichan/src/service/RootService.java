@@ -114,4 +114,16 @@ public class RootService {
 			return null;
 		}
 	}
+	
+	/**
+	 * 
+	 * @description 判断管理员登陆是否成功
+	 * @param nickname 用户昵称
+	 * @param password 用户密码
+	 * @return true=找到,false=没找到
+	 */
+	public Boolean ManagerLoginCheck(String nickname, String password) {
+		Boolean issuccess = ManagerDao.QueryManagerByPasswordAndNickName(nickname, password);
+		return issuccess;
+	}
 }

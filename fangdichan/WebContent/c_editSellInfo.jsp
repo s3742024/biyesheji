@@ -34,6 +34,7 @@
 				elem : '#editSellInfoTab', //指定原始表格元素选择器（推荐id选择器）
 				toolbar : true,
 				page : true,
+				height : 800, //容器高度
 				cols : [ [ //标题栏
 				{
 					field : 'sellDate',

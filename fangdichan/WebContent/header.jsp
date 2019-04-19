@@ -13,6 +13,7 @@
 		<div class="layui-row">
 			<div class="layui-col-md2">
 				<img alt="logo" src="${pageContext.request.contextPath}/source/images/logo.png" class="logo">
+				<span>房地产交易网</span>
 			</div>
 			<div class="layui-col-md10 layui-col-md-offset">
 				<div class="layui-collapse position">
@@ -27,7 +28,7 @@
 			<div class="welcome" style="background-image: url('${pageContext.request.contextPath}/source/images/welcome.png');"></div>
 		</div>
 		<div class="layui-row">
-			<ul class="layui-nav nav" style="" id="navUrl">
+			<ul class="layui-nav nav" id="navUrl">
 				<li class="layui-nav-item layui-this"><a href="index.jsp">首页</a></li>
 				<li class="layui-nav-item "><a href="javascript:void(0)">最新内容</a></li>
 				<li class="layui-nav-item"><a href="javascript:void(0)">房价</a></li>

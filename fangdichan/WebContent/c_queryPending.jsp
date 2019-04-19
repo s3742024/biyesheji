@@ -13,7 +13,7 @@
 		var table = layui.table;
 		table.render({
 			elem : '#QueryAudited', //指定原始表格元素选择器（推荐id选择器）
-			height : 315, //容器高度
+			height : 800, //容器高度
 			toolbar : true,
 			page : true,
 			cols : [ [ 

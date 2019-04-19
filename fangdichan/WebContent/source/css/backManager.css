@@ -20,4 +20,43 @@
 
 .titleImg{
 	height:100px;
+	background-color: #393d49;
+}
+.title-text{
+	color: #fff;
+	line-height:100px;
+	margin-left: 50px;
+	font-size: x-large;
+}
+.logo {
+	margin-left:50px;
+	width:70px;
+}
+.login-box{
+	margin-top:20px;
+	background-color:#0096881c;
+}
+
+.login-title {
+	text-align: center;
+	font-size: 2rem;
+	font-weight: bolder;
+}
+
+.login-label {
+	width: 40px;
+	padding-right: 0px;
+	padding-left: 0px;
+	font-weight: bold;
+	text-align: left;
+	font-size: 1.1rem;
+}
+
+.login-input {
+	margin-left: 50px;
+}
+
+.login-wjmm {
+	float: right;
+	margin-top: 8px;
 }
