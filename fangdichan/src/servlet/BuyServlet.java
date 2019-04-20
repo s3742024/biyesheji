@@ -74,8 +74,6 @@ public class BuyServlet extends HttpServlet {
 		}else {
 			json.put("code",1);
 		}
-		
-
 		out.print(json);
 		out.close();
 	}

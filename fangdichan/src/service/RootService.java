@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import bean.Contact;
 import bean.HouseBase;
+import bean.Purchase;
 import bean.RealInfo;
 import bean.SellAudit;
 import bean.SellInfo;
@@ -125,5 +126,31 @@ public class RootService {
 	public Boolean ManagerLoginCheck(String nickname, String password) {
 		Boolean issuccess = ManagerDao.QueryManagerByPasswordAndNickName(nickname, password);
 		return issuccess;
+	}
+	
+	/**
+	 * @description 根据管理员id获取对应审核信息
+	 * @param 管理员id
+	 * @return SellAudit的数组，false为出错或没找到
+	 */
+	public ArrayList<SellAudit> QuerySellAuditById(String manager_id){
+		ArrayList<SellAudit> sellAudits=ManagerDao.QuerySellAuditById(manager_id);
+		if(sellAudits!=null) {
+			return sellAudits;
+		}else {
+			return null;
+		}
+	}
+	/**
+	 * @description 获取所有申请买房信息
+	 * @return Purchase的bean的数组，null没有查询到和出现异常
+	 */
+	public ArrayList<Purchase> QueryPurchase(){
+		ArrayList<Purchase> purchases=ManagerDao.QueryPurchase();
+		if(purchases!=null) {
+			return purchases;
+		}else {
+			return null;
+		}
 	}
 }

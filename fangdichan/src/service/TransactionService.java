@@ -162,4 +162,19 @@ public class TransactionService {
 		}else
 			return null;
 	}
+	
+	/**
+	 * @description 根据用户昵称获取申请买房信息
+	 * @param String nickname
+	 * @return Purchase的bean的数组，null没有查询到和出现异常
+	 */
+	public ArrayList<Purchase> QueryPurchaseById(String nickname){
+		String userid = UserDao.QueryUserBydNickName(nickname);
+		ArrayList<Purchase> purchases=TransactionDao.QueryPurchaseById(userid);
+		if(purchases!=null) {
+			return purchases;
+		}else {
+			return null;
+		}
+	}
 }

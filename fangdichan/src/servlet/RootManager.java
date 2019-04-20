@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import bean.Contact;
 import bean.HouseBase;
+import bean.Purchase;
 import bean.RealInfo;
 import bean.SellAudit;
 import bean.SellInfo;
@@ -52,6 +53,10 @@ public class RootManager extends HttpServlet {
 			audit(request, response);
 		}else if("queryAllContact".equals(method)) {
 			queryAllContact(request, response);
+		}else if("querySellAudit".equals(method)) {
+			querySellAudit(request, response);
+		}else if("QueryPurchase".equals(method)){
+			QueryPurchase(request, response);
 		}
 	}
 	private void queryUserInfo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -168,6 +173,39 @@ public class RootManager extends HttpServlet {
 		}else {
 			json.put("code",1);
 			json.put("message","查询失败");
+		}
+		out.print(json);
+		out.close();
+	}
+	private void querySellAudit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		PrintWriter out = response.getWriter();
+		JSONObject json=new JSONObject();
+		RootService rootService=new RootService();
+		ArrayList<SellAudit> sellAudits= rootService.QuerySellAuditById(request.getParameter("auditorId"));
+		if(sellAudits!=null) {
+			json.put("code",0);
+			json.put("data",sellAudits);
+		}else {
+			json.put("code",1);
+			json.put("message","查询失败");
+		}
+		out.print(json);
+		out.close();
+	}
+	
+	private void QueryPurchase(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		PrintWriter out = response.getWriter();
+		JSONObject json=new JSONObject();
+		RootService rootService=new RootService();
+		ArrayList<Purchase> purchases=rootService.QueryPurchase();
+		if(purchases!=null) {
+			json.put("code",0);
+			json.put("message","搜索成功");
+			json.put("data", purchases);
+		}else {
+			json.put("code",1);
+			json.put("message","没有结果");
+			json.put("data", null);
 		}
 		out.print(json);
 		out.close();

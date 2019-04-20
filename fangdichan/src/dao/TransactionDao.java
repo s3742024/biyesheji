@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import bean.HouseBase;
 import bean.HouseImage;
+import bean.Purchase;
 import bean.SellInfo;
 import util.JDBCUtils;
 import util.UUIDUtils;
@@ -293,6 +294,39 @@ public class TransactionDao {
 			return false;
 		} finally {
 			JDBCUtils.close(null);
+		}
+	}
+	/**
+	 * 
+	 * @description 根据用户id获取申请买房信息
+	 * @param String userId
+	 * @return Purchase的bean的数组，null没有查询到和出现异常
+	 */
+	public static ArrayList<Purchase> QueryPurchaseById(String userId) {
+		try {
+			String sql = "select * from s_purchase_info where purchase_user_id=?";
+			Object[] params = { userId };
+			rs = JDBCUtils.executeQuery(sql, params);
+			ArrayList<Purchase> purchases = new ArrayList<Purchase>();
+			while (rs.next()) {// 找到
+				String purchase_application_id = rs.getString("purchase_application_id");
+				String sell_info_id = rs.getString("sell_info_id");
+				String apply_date = rs.getString("apply_date");
+				String purchase_user_id = rs.getString("purchase_user_id");
+				String contact_info_id = rs.getString("contact_info_id");
+				String purchase_remarks = rs.getString("purchase_remarks");;
+				Purchase purchase = new Purchase(purchase_application_id, sell_info_id, apply_date, purchase_user_id, contact_info_id, purchase_remarks);
+				purchases.add(purchase);
+			}
+			if (purchases.size() == 0)
+				return null;
+			else
+				return purchases;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			JDBCUtils.close(rs);
 		}
 	}
 }

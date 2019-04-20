@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import bean.Contact;
+import bean.Purchase;
 import bean.SellAudit;
 import bean.SellInfo;
 import util.JDBCUtils;
@@ -133,6 +134,70 @@ public class ManagerDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
+		} finally {
+			JDBCUtils.close(rs);
+		}
+	}
+	/**
+	 * 
+	 * @description 根据管理员id获取对应审核信息
+	 * @param 管理员id
+	 * @return SellAudit的数组，false为出错或没找到
+	 */
+	public static ArrayList<SellAudit> QuerySellAuditById(String manager_id) {
+		try {
+			String sql = "select * from s_sell_audit where auditor_id = ?";
+			Object[] params = { manager_id };
+			rs = JDBCUtils.executeQuery(sql, params);
+			ArrayList<SellAudit> sellAudits = new ArrayList<SellAudit>();
+			while (rs.next()) {// 找到
+				String sellAuditId = rs.getString("sell_audit_id");
+				String sellInfoId = rs.getString("sell_info_id");
+				String auditDate = rs.getString("audit_date");
+				String auditStatus = rs.getString("audit_status");
+				String auditorId = rs.getString("auditor_id");
+				String auditorRemark = rs.getString("auditor_remark");
+				SellAudit sellAudit = new SellAudit(sellAuditId,sellInfoId,auditDate,auditStatus,auditorId,auditorRemark);
+				sellAudits.add(sellAudit);
+			}
+			if (sellAudits.size() == 0)
+				return null;
+			else
+				return sellAudits;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			JDBCUtils.close(rs);
+		}
+	}
+	/**
+	 * 
+	 * @description 获取所有申请买房信息
+	 * @return Purchase的bean的数组，null没有查询到和出现异常
+	 */
+	public static ArrayList<Purchase> QueryPurchase() {
+		try {
+			String sql = "select * from s_purchase_info";
+			rs = JDBCUtils.executeQuery(sql, null);
+			ArrayList<Purchase> purchases = new ArrayList<Purchase>();
+			while (rs.next()) {// 找到
+				String purchase_application_id = rs.getString("purchase_application_id");
+				String sell_info_id = rs.getString("sell_info_id");
+				String apply_date = rs.getString("apply_date");
+				String purchase_user_id = rs.getString("purchase_user_id");
+				String contact_info_id = rs.getString("contact_info_id");
+				String purchase_remarks = rs.getString("purchase_remarks");;
+				Purchase purchase = new Purchase(purchase_application_id, sell_info_id, apply_date, purchase_user_id, contact_info_id, purchase_remarks);
+				purchases.add(purchase);
+			}
+			if (purchases.size() == 0)
+				return null;
+			else
+				return purchases;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
 		} finally {
 			JDBCUtils.close(rs);
 		}

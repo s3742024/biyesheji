@@ -30,7 +30,6 @@
 		$("#title").load("header.jsp");
 		$("#mainArea").load("home.jsp");
 		$("#footer").load("footer.jsp");
-		
 	</script>
 </body>
 </html>

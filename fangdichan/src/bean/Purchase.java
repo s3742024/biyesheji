@@ -7,7 +7,7 @@ public class Purchase {
 	private String sellInfoId;
 	private String applyDate;
 	private String purchaseUserId;
-	private String contact_info_id;
+	private String contactInfoId;
 	private String purchaseRemarks;
 	private Contact contact;
 	public String getpurchaseApplicationId() {
@@ -34,11 +34,11 @@ public class Purchase {
 	public void setpurchaseUserId(String purchaseUserId) {
 		this.purchaseUserId = purchaseUserId;
 	}
-	public String getContact_info_id() {
-		return contact_info_id;
+	public String getcontactInfoId() {
+		return contactInfoId;
 	}
-	public void setContact_info_id(String contact_info_id) {
-		this.contact_info_id = contact_info_id;
+	public void setcontactInfoId(String contactInfoId) {
+		this.contactInfoId = contactInfoId;
 	}
 	public String getpurchaseRemarks() {
 		return purchaseRemarks;
@@ -52,13 +52,13 @@ public class Purchase {
 	public void setContact(Contact contact) {
 		this.contact = contact;
 	}
-	public Purchase(String purchaseApplicationId, String sellInfoId, String applyDate, String purchaseUserId, String contact_info_id, String purchaseRemarks) {
+	public Purchase(String purchaseApplicationId, String sellInfoId, String applyDate, String purchaseUserId, String contactInfoId, String purchaseRemarks) {
 		super();
 		this.purchaseApplicationId = purchaseApplicationId;
 		this.sellInfoId = sellInfoId;
 		this.applyDate = applyDate;
 		this.purchaseUserId = purchaseUserId;
-		this.contact_info_id = contact_info_id;
+		this.contactInfoId = contactInfoId;
 		this.purchaseRemarks = purchaseRemarks;
 	}
 	public Purchase(String sellInfoId, String applyDate, String purchaseUserId, String purchaseRemarks) {
