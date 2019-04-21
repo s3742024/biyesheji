@@ -21,7 +21,6 @@
 	<%-- <c:import url="header.jsp"></c:import> --%>
 	<!-- 	主要区域 -->
 	<div class="layui-container" id="mainArea">
-		
 	</div>
 	<!-- 	尾部部分 -->
 		<div class="layui-container" id="footer">

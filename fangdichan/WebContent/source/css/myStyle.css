@@ -194,10 +194,11 @@
 	margin-top: 10px;
 }
 /* sell */
-.sell-top>img{
+.sell-top>p{
 	margin-top:30px;
 	width:100%;
-	height:100px;
+	text-align:center;
+	font-size: x-large;
 }
 .sell-main{
 	box-sizing: border-box;

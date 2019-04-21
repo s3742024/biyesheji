@@ -61,6 +61,8 @@ public class userManager extends HttpServlet {
 			queryAudited(request, response);
 		}else if("QueryPurchase".equals(method)){
 			QueryPurchase(request, response);
+		}else if("QueryPurchased".equals(method)){
+			QueryPurchased(request, response);
 		}
 	}
 
@@ -145,6 +147,24 @@ public class userManager extends HttpServlet {
 		TransactionService transactionService=new TransactionService();
 		String nickname=request.getParameter("nickname");
 		ArrayList<Purchase> purchases=transactionService.QueryPurchaseById(nickname);
+		if(purchases!=null) {
+			json.put("code",0);
+			json.put("message","搜索成功");
+			json.put("data", purchases);
+		}else {
+			json.put("code",1);
+			json.put("message","没有结果");
+			json.put("data", null);
+		}
+		out.print(json);
+		out.close();
+	}
+	private void QueryPurchased(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		PrintWriter out = response.getWriter();
+		JSONObject json=new JSONObject();
+		TransactionService transactionService=new TransactionService();
+		String nickname=request.getParameter("nickname");
+		ArrayList<Purchase> purchases=transactionService.QueryPurchasedById(nickname);
 		if(purchases!=null) {
 			json.put("code",0);
 			json.put("message","搜索成功");

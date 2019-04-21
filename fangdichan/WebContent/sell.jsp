@@ -12,9 +12,9 @@
 
 	<!-- 	主要区域 -->
 	<div class="layui-row sell-top">
-		<img alt="sell" src="${pageContext.request.contextPath}/source/images/sell.jpg">
+		<p>发布卖房信息</p>
 	</div>
-	<div class="layui-row sell-main" style="min-height: 1000px; background-color: #eca">
+	<div class="layui-row sell-main" style="min-height: 1200px;background-color: #efefef;border:4px ridge #f0fbeb;">
 		<c:if test="${empty sessionScope.userNickname}">
 						请先登录
 			</c:if>
