@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import bean.Contact;
 import bean.HouseBase;
+import bean.HouseImage;
 import bean.Purchase;
 import bean.SellInfo;
 import util.JDBCUtils;
@@ -146,6 +147,54 @@ public class BuyDao {
 			} else {// 没有找到
 				return null;
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			JDBCUtils.close(rs);
+		}
+	}
+	/**
+	 * 
+	 * @description 根据houseBaseId获取相应的第一张图片
+	 * @param houseBaseId 卖房信息id
+	 * @return HouseImage的bean类，null没有查询到和出现异常
+	 */
+	public static HouseImage QueryHouseImage(String houseBaseId) {
+		try {
+			String sql = "select  top 1 i.* from s_house_image as i,s_house_base as b where b.house_base_id=? and i.house_base_id=b.house_base_id";
+			Object[] params = {houseBaseId};
+			rs = JDBCUtils.executeQuery(sql, params);
+			if (rs.next()) {// 找到
+				String house_image_id = rs.getString("house_image_id");
+				String image_url = rs.getString("image_url");
+				String image_type = rs.getString("image_type");
+				String image_ramarks = rs.getString("image_ramarks");
+				String house_base_id = rs.getString("house_base_id");
+				HouseImage houseImage=new HouseImage(house_image_id, image_url, image_type, image_ramarks,house_base_id);
+				return houseImage;
+			} else {// 没有找到
+				return null;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			JDBCUtils.close(rs);
+		}
+	}
+	/**
+	 * 
+	 * @description 根据要搜索内容查询所有房屋信息
+	 * @param scearchStr 查询参数 标题或者详细地址
+	 * @return sellInfo 对应的sell_info的数组，null没有查询到和出现异常
+	 */
+	public static ArrayList<SellInfo> QuerySellInfoAlter(String scearchStr) {
+		try {//这里只能用字符串拼接不然会出错
+			String sql = "select * from HouseInfoLimitTitle(?)";
+			Object[] params = {scearchStr};
+			rs = JDBCUtils.executeQuery(sql, params);
+			return transformation(rs);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

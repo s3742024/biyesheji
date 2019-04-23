@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.Contact;
+import bean.HouseImage;
 import bean.Purchase;
 import bean.SellInfo;
 import net.sf.json.JSONObject;
@@ -38,6 +39,10 @@ public class BuyServlet extends HttpServlet {
 			queryDefault(request, response);
 		}else if ("buyContextInfo".equals(method)) {
 			buyContextInfo(request, response);
+		}else if ("QueryHouseImage".equals(method)) {
+			QueryHouseImage(request, response);
+		}else if ("QuerySellInfoAlter".equals(method)) {
+			QuerySellInfoAlter(request, response);
 		}
 	}
 	private void queryDefault(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -71,6 +76,36 @@ public class BuyServlet extends HttpServlet {
 		if(contact2 !=null){
 			json.put("code",0);
 			json.put("data",contact2);
+		}else {
+			json.put("code",1);
+		}
+		out.print(json);
+		out.close();
+	}
+	private void QueryHouseImage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		PrintWriter out = response.getWriter();
+		JSONObject json=new JSONObject();
+		TransactionService transactionService=new TransactionService();
+		String houseBaseId=request.getParameter("houseBaseId");
+		HouseImage houseImage = transactionService.QueryHouseImage(houseBaseId);
+		if(houseImage !=null){
+			json.put("code",0);
+			json.put("data",houseImage);
+		}else {
+			json.put("code",1);
+		}
+		out.print(json);
+		out.close();
+	}
+	private void QuerySellInfoAlter(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		PrintWriter out = response.getWriter();
+		JSONObject json=new JSONObject();
+		String scearchStr = request.getParameter("scearchStr");
+		TransactionService transactionService = new TransactionService();
+		SellInfo[] sellInfos = transactionService.QuerySellInfoAlter(scearchStr);
+		if(sellInfos!=null) {
+			json.put("code",0);
+			json.put("data",sellInfos);
 		}else {
 			json.put("code",1);
 		}

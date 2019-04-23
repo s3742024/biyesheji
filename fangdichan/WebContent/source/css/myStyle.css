@@ -87,7 +87,7 @@
 }
 /* 首页 */
 .index-main {
-	padding: 20px 20px;
+	padding: 20px 0;
 }
 
 
@@ -109,9 +109,11 @@
 }
 
 .quick-price, .quick-area {
-	height: 80px;
+	height: 60px;
 }
-
+.quick-price>span, .quick-area>span {
+	line-height: 60px;
+}
 
 .ad-1 {
 	height: 110px;
@@ -236,6 +238,7 @@
 .buy-img{
 	width: 100%;
 	height:auto;
+	max-height:200px;
 }
 .buy-img-show{
 	height:100%;

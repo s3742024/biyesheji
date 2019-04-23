@@ -220,7 +220,7 @@ public class UserDao {
 	 */
 	public static boolean UpdateRealInfo(String nickname, RealInfo realInfo) {
 		try {
-			String sql = "INSERT INTO a_real_info(real_info_id,real_info_name,id_card_num,occupation)VALUES(?,?,?,?);update s_sell_info  set real_info_id=? where user_nickname = ?";
+			String sql = "INSERT INTO a_real_info(real_info_id,real_info_name,id_card_num,occupation)VALUES(?,?,?,?);update a_user  set real_info_id=? where user_nickname = ?";
 			Object[] params = { realInfo.getRealInfoId(), realInfo.getRealInfoName(), realInfo.getIdCardNum(), realInfo.getOccupation(), realInfo.getRealInfoId(), nickname };
 			res = JDBCUtils.executeUpdate(sql, params);
 			if (res)

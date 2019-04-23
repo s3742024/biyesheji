@@ -75,9 +75,9 @@
 	<script id="dt" type="text/html">
 		{{#  layui.each(d, function(index, item){ }}
 			<div class="layui-card buy-box" onclick=getDetail('{{item.sellInfoId}}')>
-				<div class="layui-card-body layui-row ">
-					<div class="layui-col-md2">
-		  			<img alt="" src="https://pic1.ajkimg.com/display/hj/ae14250ba1ab179d163aeb5f579da09c/240x180c.jpg?t=1" class="buy-img">
+				<div class="layui-card-body layui-row " style="height:200px">
+					<div class="layui-col-md3">
+							<img alt="showImage" src="ShowImageServlet?url={{item.imgUrl}}" style="max-height:180px;width:auto">
 					</div>
 					<div class="layui-col-md7 buy-item-text">
 			 			<p class="buy-text-title">{{ item.sellTitle }}<p>
@@ -88,7 +88,7 @@
 							<i class="layui-icon">&#xe623;</i><span>{{ item.houseBase.houseType }}</span><p>
 			 			<p class="buy-text-position">{{ item.houseBase.detailPosition }}</p>
 					</div>
-					<div class="layui-col-md3">
+					<div class="layui-col-md2">
 			  		<p class=" buy-text-price">{{item.sellPrice}}万</p>
 						<p>{{Math.round(item.sellPrice*10000/item.houseBase.constructionArea)}}元/m<sup>2</sup></p>
 					</div>
@@ -105,7 +105,6 @@
     var page = 1;
     var num = 5;
     function render(data) {
-      console.log(data)
       var decorationDegree = ['毛坯', '简装修', '精装修', '豪华装修'];
       var houseType = ['公寓', '普通住宅', '别墅', '平房', '其他'];
       if(!data){
@@ -115,18 +114,59 @@
       for (var i of data) {
         i.houseBase.decorationDegree = decorationDegree[i.houseBase.decorationDegree - 1];
         i.houseBase.houseType = houseType[i.houseBase.houseType - 1];
+        i.imgUrl="e0733154a4dc4b87856c8c0ab1549ce3.jpg"
       }
+      
       var getTpl = dt.innerHTML;
       var view = document.getElementById('buy-main');
-      layui.use('laytpl', function () {
+      /* layui.use('laytpl', function () {
         var laytpl = layui.laytpl;
         laytpl(getTpl).render(data, function (html) {
           view.innerHTML += html;
         });
+      }) */
+      //console.log(data)
+			renderImg(data);
+
+    }
+    function renderImg(Data){
+    	for(var i of Data){
+    		var url=null;
+   	       $.ajax({
+   	           type: "post",
+   	           url: "BuyServlet",
+   	        async:false,
+   	           data: { "method": "QueryHouseImage", 
+   	           	"houseBaseId": i.houseBase.houseBaseId, 
+   	           },
+   	         }).success(function (message) {
+   	        	 var message=JSON.parse(message)
+   	           if(message.code=="0"){
+   	        	   console.log(message);
+   	        			console.log("kaishi",i.imgUrl)
+   	        			i.imgUrl=message.data.imageUrl;
+   	        			console.log("jieshu",i.imgUrl)
+   	           }
+   	         }).fail(function (err) {
+   	           console.log(err);
+   	           alert("未知错误");
+   	         })
+    	}
+    	var view = document.getElementById('buy-main');
+    	var getTpl = dt.innerHTML;
+    	
+    	layui.use('laytpl', function () {
+          var laytpl = layui.laytpl;
+          laytpl(getTpl).render(Data, function (html) {
+        	  console.log(Data)
+            view.innerHTML += html;
+          });
       })
+    	
+    	
     }
     function getInfo() {
-    	console.log(minPrice,maxPrice,minArea,maxArea)
+    	console.log(minPrice,maxPrice,minArea,maxArea,page,num)
       $.ajax({
         type: "post",
         url: "BuyServlet",
@@ -148,7 +188,7 @@
         alert("未知错误");
       })
     }
-    getInfo();
+    
     /*		var data = { //数据
           "list":[{"title":"千家萬户实拍 溪岸景园 99平150万 毛坯3房 视野开",
           "houseBase":{
@@ -208,6 +248,30 @@
 	    	page=1;
 	  		getInfo();
      }
+    $(document).ready(function(){
+    	var searchStr="<%=request.getParameter("searchStr")%>";
+    	console.log("searchStr",searchStr);
+    	if(searchStr){
+    		$.ajax({
+	        type: "post",
+	        url: "BuyServlet",
+	        data: { "method": "QuerySellInfoAlter", 
+	        	"scearchStr": searchStr, 
+	        },
+	      }).success(function (message) {
+	        //更新要显示的地方
+	        var message = JSON.parse(message)
+	        //console.log(message.data);
+	        render(message.data);
+	      }).fail(function (err) {
+	        console.log(err);
+	        alert("未知错误");
+	      })
+    	}else{
+    		getInfo();
+    	}
+    })
+    	
   </script>
 </body>
 

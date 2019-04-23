@@ -46,6 +46,7 @@ public class userManager extends HttpServlet {
 //		
 //		out.write("123");
 //		out.close();
+		
 		String method = request.getParameter("method");// 得到传入的值下面根据传入的值执行不同的方法！！
 		System.out.println("method" + method);
 		if ("editPwd".equals(method)) {

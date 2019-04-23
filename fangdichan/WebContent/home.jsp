@@ -12,16 +12,24 @@
 			<div class="layui-card">
 				<div class="quick-info">快速查询房屋信息</div>
 				<div class="quick-search">
-					<input type="text" name="title" required lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
-					<button class="layui-btn layui-btn-fluid">
+					<input type="text" name="searchStr" placeholder="请输入名称、地址" autocomplete="off" class="layui-input">
+					<button class="layui-btn layui-btn-fluid" onclick="search()">
 						<i class="layui-icon">&#xe615</i>搜索
 					</button>
 				</div>
-				<div class="quick-area"></div>
-				<div class="quick-price"></div>
+				<div class="quick-area">
+					<span class="layui-breadcrumb"> <span>热门区域:</span> <a href="javascript:void(0)">滨湖</a> <a href="javascript:void(0)">崇安</a> <a href="javascript:void(0)">南长</a> <a href="javascript:void(0)">北塘</a>
+						<a href="javascript:void(0)">新区</a> <a href="javascript:void(0)">惠山</a> <a href="javascript:void(0)">锡山</a>
+					</span>
+				</div>
+				<div class="quick-price">
+					<span class="layui-breadcrumb"> <span>热门板块:</span> <a href="javascript:void(0)">崇安寺</a> <a href="javascript:void(0)">太湖</a> <a href="javascript:void(0)">清名桥</a> <a href="javascript:void(0)">河埒</a>
+						<a href="javascript:void(0)">旺庄</a> <a href="javascript:void(0)">广益</a> <a href="javascript:void(0)">黄巷</a>
+					</span>
+				</div>
 			</div>
 			<div class="index-show-item">
-				<p class="quick-info">热门楼盘>></p>
+				<p class="quick-info">热门楼盘 >></p>
 				<div class="layui-row">
 					<div class="layui-carousel" id="carousel1">
 						<div carousel-item>
@@ -37,7 +45,7 @@
 				<img alt="ad1" src="${pageContext.request.contextPath}/source/images/ad1.jpg">
 			</div>
 			<div class="index-show-item">
-				<p class="quick-info">热门导购>></p>
+				<p class="quick-info">热门导购 >></p>
 				<div class="layui-row">
 					<div class="layui-carousel" id="carousel2">
 						<div carousel-item>
@@ -52,13 +60,13 @@
 				<img alt="ad2" src="${pageContext.request.contextPath}/source/images/ad2.jpg">
 			</div>
 			<div class="index-show-item">
-				<p class="quick-info">精选>></p>
+				<p class="quick-info">精选 >></p>
 				<div class="layui-row" style="height: 200px; width: 100%">
 					<img src="${pageContext.request.contextPath}/source/images/c3.png" style="width:100%;height:100%"></img>
 				</div>
 			</div>
 		</div>
-		<div class="layui-col-md4 index-main">
+		<div class="layui-col-md4 index-main" style="padding: 20px">
 			<!-- 用户状态部分 -->
 			<div class="user-status" style="background-color: #0096881c;">
 				<c:if test="${empty sessionScope.userNickname}">
@@ -149,6 +157,12 @@
 			arrow : 'always'
 		});
 	});
+	function search(){
+		var searchStr=$("input[name='searchStr']").val();
+		if (search!=null){
+			$("#mainArea").load("buy.jsp",{"searchStr":searchStr});
+		}
+	}
 	</script>
 </body>
 </html>

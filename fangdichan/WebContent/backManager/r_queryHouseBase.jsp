@@ -68,6 +68,8 @@
 				done : function(res, curr, count) {
 					if (res.code == 0) {
 						console.log(res.data);
+					}else if(res.code == 1){
+						layer.msg('没有数据！');
 					}
 				}
 			});

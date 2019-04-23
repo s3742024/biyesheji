@@ -192,4 +192,32 @@ public class TransactionService {
 			return null;
 		}
 	}
+	/**
+	 * @description 根据houseBaseId获取相应的第一张图片
+	 * @param houseBaseId 卖房信息id
+	 * @return HouseImage的bean类，null没有查询到和出现异常
+	 */
+	public HouseImage QueryHouseImage(String houseBaseId){
+		HouseImage houseImage=BuyDao.QueryHouseImage(houseBaseId);
+		return houseImage;
+		
+	}
+	/**
+	 * 
+	 * @description 根据要搜索内容查询所有房屋信息
+	 * @param scearchStr 查询参数 标题或者详细地址
+	 * @return sellInfo 对应的sell_info的数组，null没有查询到和出现异常
+	 */
+	public SellInfo[] QuerySellInfoAlter(String scearchStr) {
+		ArrayList<SellInfo> sellInfoList = BuyDao.QuerySellInfoAlter(scearchStr);
+		
+		if (sellInfoList != null) {
+			SellInfo[] sellInfos = new SellInfo[sellInfoList.size()];
+			for (int i = 0; i < sellInfoList.size(); i++) {
+				sellInfos[i] = (SellInfo) sellInfoList.get(i);
+			}
+			return sellInfos;
+		}
+		return null;
+	}
 }

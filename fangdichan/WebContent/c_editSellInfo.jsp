@@ -11,7 +11,7 @@
   <a class="layui-btn layui-btn-sm" lay-event="editInfo">修改资料</a>
 	<a class="layui-btn layui-btn-sm" lay-event="editImg">添加图片</a>
 </script>
-<table class="layui-table">
+<!-- <table class="layui-table">
 	<colgroup>
 		<col>
 		<col>
@@ -26,7 +26,7 @@
 	</thead>
 	<tbody id="baseInfoTab">
 	</tbody>
-</table>
+</table> -->
 <script type="text/javascript">
 		layui.use('table', function() {
 			var table = layui.table;

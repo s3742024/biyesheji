@@ -10,7 +10,6 @@
 </style>
 </head>
 <body>
-	<%=request.getParameter("sellInfoId")%>
 	<div id="buy-header"></div>
 	<div class="layui-row" style="overflow: hidden;">
 		<div class="layui-col-md9">
@@ -44,16 +43,37 @@
 							</div>
 						</div>
 					</div>
-					<div class="layui-tab-item">内容2</div>
-					<div class="layui-tab-item">内容3</div>
-					<div class="layui-tab-item">内容4</div>
+					<div class="layui-tab-item">
+						<img alt="" src="https://pic1.ajkimg.com/display/anjuke/c44287-%E5%A5%BD%E7%9A%84%E5%AE%B6%E6%88%BF%E4%BA%A7/dd5972254c643ad9ed8a69a8e2e0b0f5-599x450.jpg?t=1" class="buy-img">
+					</div>
+					<div class="layui-tab-item">
+						<div class="layui-carousel" id="buy-img-2">
+							<div carousel-item style="text-align: center">
+								<div>
+									<img alt="" src="https://pic1.ajkimg.com/display/hj/085c99012efec94916a0b5d6d2bba58c/600x450.jpg?t=1" class="buy-img-show">
+								</div>
+								<div>
+									<img alt="" src="https://pic1.ajkimg.com/display/hj/1857eaa5fbcef90b580356ff97061c48/600x450.jpg?t=1" class="buy-img-show">
+								</div>
+								<div>
+									<img alt="" src="https://pic1.ajkimg.com/display/hj/5ca5f48d22342dbb94cf9212f03fa0c3/600x450.jpg?t=1" class="buy-img-show">
+								</div>
+								<div>
+									<img alt="" src="https://pic1.ajkimg.com/display/hj/3cd8a5d51a257ad831f2705216d50c7f/600x450.jpg?t=1" class="buy-img-show">
+								</div>
+								<div>
+									<img alt="" src="https://pic1.ajkimg.com/display/hj/676c24322bf4b4f6d10614b007a6351e/600x450.jpg?t=1" class="buy-img-show">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="layui-tab-item">周边地图</div>
 				</div>
 			</div>
 			<div class="layui-row" id="buy-houseInfo-desc"></div>
 			<div id="buy-introduce"></div>
 			<div>
 				<p class="buy-text-title" id="buy-map">地图展示</p>
-
 			</div>
 			<div>
 				<p class="buy-text-title">相关推荐</p>
@@ -182,7 +202,23 @@
 				height : '350px',
 				arrow : 'always',
 			});
+			carousel.render({
+				elem : '#buy-img-2',
+				width : '100%',
+				height : '350px',
+				arrow : 'always',
+			});
 		});
+		layui.use('element', function(){
+			  var element = layui.element;
+			  //一些事件监听
+			  element.on('tab(docDemoTabBrief)', function(data){
+				  if(data.index=='3'){
+					  document.getElementById('buy-map').scrollIntoView()
+				  }
+				});
+			});
+		
 	</script>
 </body>
 </html>

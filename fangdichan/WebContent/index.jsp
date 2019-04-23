@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/source/layui/css/layui.css">
 <link rel="stylesheet" type="text/css" href="./source/css/myStyle.css" />
 <script src="${pageContext.request.contextPath}/source/layui/layui.js"></script>
-<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <style type="text/css">
 .index-news {
 	height: 300px

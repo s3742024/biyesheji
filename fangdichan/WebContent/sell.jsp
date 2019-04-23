@@ -26,9 +26,10 @@
 					<div class="layui-input-inline">
 						<select name="provinceSelect">
 							<option value="">请选择省</option>
-							<option value="浙江" selected="">浙江省</option>
-							<option value="你的工号">江西省</option>
-							<option value="你最喜欢的老师">福建省</option>
+							<option value="江苏省" selected="selected">江苏省</option>
+							<option value="浙江">浙江省</option>
+							<option value="江西">江西省</option>
+							<option value="福建">福建省</option>
 						</select>
 					</div>
 					<div class="layui-input-inline">

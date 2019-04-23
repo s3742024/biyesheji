@@ -43,7 +43,9 @@
 	<script type="text/javascript">
 	$("#navUrl").click(function(e) {
 		var url = e.target.id;
-		if (url) {
+		if(url=="buy"){
+			$("#mainArea").load(url + ".jsp",{"searchStr":null});
+		}else if (url) {
 			$("#mainArea").load(url + ".jsp");
 		}
 	})
