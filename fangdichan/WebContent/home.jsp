@@ -66,7 +66,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="layui-col-md4 index-main" style="padding: 20px">
+		<div class="layui-col-md4 index-main" style="padding: 20px 0 0 20px">
 			<!-- 用户状态部分 -->
 			<div class="user-status" style="background-color: #0096881c;">
 				<c:if test="${empty sessionScope.userNickname}">

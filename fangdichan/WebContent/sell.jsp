@@ -5,23 +5,41 @@
 <head>
 <meta charset="UTF-8">
 <title>房地产交易网</title>
+
 </head>
-<style>
-</style>
+
 <body>
 
 	<!-- 	主要区域 -->
 	<div class="layui-row sell-top">
 		<p>发布卖房信息</p>
 	</div>
-	<div class="layui-row sell-main" style="min-height: 1200px;background-color: #efefef;border:4px ridge #f0fbeb;">
+	<div class="layui-row sell-main" style="min-height: 1200px; background-color: #efefef; border: 4px ridge #f0fbeb;">
 		<c:if test="${empty sessionScope.userNickname}">
 						请先登录
 			</c:if>
 		<c:if test="${not empty sessionScope.userNickname}">
 			<!--登录后的逻辑 -->
 			<form class="layui-form" id="houseInfoSubmit">
-				<div class="layui-form-item">
+				<div class="layui-form-item" id="area-picker">
+					<div class="layui-form-label">网点地址</div>
+					<div class="layui-input-inline" style="width: 200px;">
+						<select name="province" class="province-selector" data-value="广东省" lay-filter="province-1">
+							<option value="">请选择省</option>
+						</select>
+					</div>
+					<div class="layui-input-inline" style="width: 200px;">
+						<select name="city" class="city-selector" data-value="深圳市" lay-filter="city-1">
+							<option value="">请选择市</option>
+						</select>
+					</div>
+					<div class="layui-input-inline" style="width: 200px;">
+						<select name="county" class="county-selector" data-value="龙岗区" lay-filter="county-1">
+							<option value="">请选择区</option>
+						</select>
+					</div>
+				</div>
+				<!-- <div class="layui-form-item">
 					<label class="layui-form-label">选择地区</label>
 					<div class="layui-input-inline">
 						<select name="provinceSelect">
@@ -50,7 +68,7 @@
 							<option value="拱墅区">临安市</option>
 						</select>
 					</div>
-				</div>
+				</div> -->
 				<div class="layui-form-item">
 					<label class="layui-form-label">具体地址</label>
 					<div class="layui-input-block">
@@ -198,8 +216,22 @@
 	<!-- 	尾部部分 -->
 
 	<script>
-	layui.use('form', function(){
-		  var form = layui.form;
+	//配置插件目录
+    layui.config({
+        base: '${pageContext.request.contextPath}/source/mods/'
+        , version: '1.0'
+    });
+	layui.use(['layer', 'form', 'layarea'], function(){
+		  var layer = layui.layer
+      var form = layui.form
+      var layarea = layui.layarea;
+		  layarea.render({
+        elem: '#area-picker',
+        change: function (res) {
+            //选择结果
+            console.log(res);
+        }
+     	});
 		});
 
 // 		$("#sellStep1").ready(function checkRealInfo() {
@@ -280,6 +312,10 @@
 				alert("未知错误");
 			})
 		}
+	</script>
+	<script>
+    
+
 	</script>
 </body>
 </html>

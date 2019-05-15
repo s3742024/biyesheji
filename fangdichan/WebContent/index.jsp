@@ -9,6 +9,8 @@
 <link rel="stylesheet" type="text/css" href="./source/css/myStyle.css" />
 <script src="${pageContext.request.contextPath}/source/layui/layui.js"></script>
 <script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<link rel="icon" href="${pageContext.request.contextPath}/favicon.ico" type="image/x-icon" /> 
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico" type="image/x-icon" />  
 <style type="text/css">
 .index-news {
 	height: 300px
@@ -23,7 +25,7 @@
 	<div class="layui-container" id="mainArea">
 	</div>
 	<!-- 	尾部部分 -->
-		<div class="layui-container" id="footer">
+		<div class="layui-container" id="footer" style="background-color: #f7f7f7;">
 		</div>
 	<script type="text/javascript">
 		$("#title").load("header.jsp");

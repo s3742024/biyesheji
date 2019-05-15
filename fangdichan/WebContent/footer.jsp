@@ -6,6 +6,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-		<div class="layui-row">这里是底部</div>
+		<div class="layui-row" style="text-align: center">©copyright 董涛  毕设 房产交易系统</div>
+		<div class="layui-row" style="text-align: center">版权所有 盗版必究</div>
 </body>
 </html>
